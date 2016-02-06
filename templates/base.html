@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+			<title>{{country|capitalize}} Food Guide - Chris Ward</title>
+			<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+
+			<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+			<meta name="description" content="Guide to food in {{country|capitalize}}." />
+			<meta name="keywords" content="" />
+			
+			
+			<meta property="og:title" content="{{country|capitalize}} Food Guide" />
+			<meta property="og:site_name" content="chrisward.co.uk" />
+			<meta property="og:description" content="A guide based on my food experiences during my time in {{country|capitalize}}." />
+			<meta property="og:type" content="article" />
+			<meta property="og:url" content="http://chrisward.co.uk/travel/{{country|lower}}/food/" />
+			<meta property="article:author" content="https://www.facebook.com/chris.ward.brighton" />
+			<meta property="article:section" content="Travel" />
+			
+			<meta property="og:image" content="{{image_url}}" />
+			<meta property="og:image:url" content="{{image_url}}" />
+			<meta property="og:image:type" content="image/jpeg" />
+			<meta property="og:image:width" content="{{image_width}}" />
+			<meta property="og:image:height" content="{{image_height}}" />
+			<meta property="og:locale" content="en_GB" />
+			
+			
+
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+			<link href='http://fonts.googleapis.com/css?family=Roboto:400,500,300' rel='stylesheet' type='text/css'>
+			<link rel="stylesheet" href="styles/swipebox.css">
+			
+			
+			
+			{% if version == 'live' %}
+			<link rel="stylesheet" href="styles/style.css">
+			{% else %}
+			<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.0/less.min.js"></script>
+			<link rel="stylesheet/less" type="text/css" href="styles/style.less" />
+		  {% endif %}
+			
+			
+			<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+			<script src="scripts/jquery.swipebox.js"></script>
+			
+			<script src="scripts/script.js"></script>
+			
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+			
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+			
+			
+			<link rel="icon" type="image/png" href="../../flags/{{countryCode}}.png" />
+			<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-61389422-1', 'auto');
+			  ga('send', 'pageview');
+
+			</script>
+		</head>
+
+  <body>
+  
+    <div class="">
+      <header class="">
+        <h1 class="hidden-xs">{{country|capitalize}} <small>Food Guide</small></h1>
+        <h2 class="visible-xs"></h2>
+        
+        <i class="material-icons visible-xs" id="menu-btn">menu</i>
+        <nav class="hidden-xs">     
+          <a class="is-active" href="#dishes"><i class="material-icons visible-xs">local_dining</i>Dishes</a>
+          <a href="#glossary" class="hidden"><i class="material-icons visible-xs">list</i>Glossary</a>
+        {% for location in locations %}
+          <a href="#{{ location.slug }}"><i class="material-icons visible-xs">location_city</i>{{ location.short }}</a>
+        {% endfor %}
+        
+        <a href="https://www.google.com/maps/d/viewer?mid={{map_id}}" target="_new"><i class="material-icons">map</i>Map</a>
+      
+        </nav>
+      </header>
+
+      <main class="">
+        <div class="tab is-active">
+          <p>Loading...</p>
+        </div>
+        <div class="tab" id="dishes">
+        
+          <h2>{{ country_adj }} Dishes</h2>
+          
+          
+          <section class="">
+            <div class="container-fluid">
+              
+              <div class="col-xs-12">
+                {% block dishes_intro %}<p>Coming soon. For now click the locations in the menu.</p>{% endblock dishes_intro %}
+                
+                
+                {% for dish in dishes %}
+                
+                  {% if dish.name %}
+                    <div class="dish">
+                      <img src="{{ dish.image }}" />
+                      <h3>{{ dish.name }}</h3>
+                    
+                      <p>{{ dish.description }}</p>
+                      
+                      {% for tip in dish.tips %}<p><i class="material-icons">lightbulb_outline</i> <em>{{ tip }}</em></p>{% endfor %}
+                      {% if dish.price %}
+                        <p><i class="material-icons">attach_money</i> <em>Typical price: {{ dish.price }}</em></p>
+                      {% endif %}
+                      
+                      {% if dish.places and dish.places.length > 0 %}
+                        <p><i class="material-icons">place</i> <em>Where to eat?</em></p>
+                        <ul class="where">
+                        {% for place in dish.places %}
+                            <li>
+                              {% if place.favourite %}<i class="material-icons red" title="Favourite!">favorite</i>{% elif place.visited %}<i class="material-icons green" title="Have visited">{{ place.icon }}</i>{% else %}<i class="material-icons grey" title="Not visited">{{ place.icon }}</i>{% endif %}
+                              <a href="#{{ place.location_slug }}/{{ place.slug }}">{{ place.name }} ({{ place.location_short }})</a>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                      {% endif %}
+                      
+                    </div>
+                  {% endif %}
+                  
+                {% endfor %}
+          
+              </div>
+            </div>
+          </section>
+          
+          
+          
+        </div>
+        <div class="tab" id="glossary">
+        
+          <h2>{{country|capitalize}} Food Glossary</h2>
+          
+          <p>Coming soon</p>
+        </div>
+        
+
+
+        {% for locationGroup in foodByLocation %}
+
+          <div class="tab" id="{{ locationGroup|first.location_slug }}">
+
+           <h2>{{ locationGroup|first.location_group }}</h2>
+  
+            {% for place in locationGroup %}
+              <section class="" id="{{ place.slug }}">
+                <div class="container-fluid">
+                  
+                  <div class="col-xs-12 col-sm-8">
+                    <h4>
+                      {% if place.favourite %}<i class="material-icons red" title="Favourite!">favorite</i>{% elif place.visited %}<i class="material-icons green" title="Have visited">{{ place.icon }}</i>{% else %}<i class="material-icons grey" title="Not visited">{{ place.icon }}</i>{% endif %}
+                      {{ place.name }}
+                    </h4>
+                    <div class="place-type">
+                      {{ place.cuisine|upper }} {{ place.type|upper }}
+                      {% if not place.visited %}<small>(NOT VISITED)</small>{% endif %}
+                    </div>
+                    
+                    {% if place.links.length > 0 %}
+                      <ul class="links">
+                        {% for link in place.links %}
+                          <li><a href="{{ link.url }}"{% if link.icon == 'ondemand_video' %} class="swipebox-video"{% endif %}><i class="material-icons">{{ link.icon }}</i> {{ link.title }}</a></li>
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
+                    
+                    {% if place.favourite and place.images.length > 0 %}
+                      <div class="poster" style="background: url({{ place.images|first.medium }}) no-repeat center center;" class="img-responsive"/></div>
+                    {% endif %}
+
+    
+                    <div class="review">
+                      {{ place.description|raw }}
+                    </div>
+                    
+                  </div>
+                  <div class="col-xs-12 col-sm-4">
+                    
+                    <a href="https://www.google.com/maps/place/{{ place.lng }},{{ place.lat }}"><img class="map img-responsive" width="450" height="250" src="https://maps.googleapis.com/maps/api/staticmap?center={{ place.lng }},{{ place.lat }}&size=450x250&zoom=16&maptype=roadmap&markers={{ place.lng }},{{ place.lat }}&key=AIzaSyDdJdIoqW-kaIvI25iEkSu1CgEkXpTNtGU" /></a>
+    
+                    <ul class="location-details">
+                      <li><i class="material-icons red">place</i> <a href="https://www.google.com/maps/place/{{ place.lng }},{{ place.lat }}">{{ place.address }}</a></li>
+                      {% if place.phone %}<li><i class="material-icons">phone</i> {{ place.phone }}</li>{% endif %}
+                    </ul>
+    
+                  </div>
+
+                    
+                  {% if place.images.length > 0 %}
+                    <div class="col-xs-12">
+                      <div class="gallery-thumbs">
+                      {% for image in place.images %}
+                        <a href="{{ image.large }}" rel="full-images" class="swipebox hidden-xs" title="{{ place.name }}"><img src="{{ image.thumb }}" class="img-responsive"/></a>
+                        <a href="{{ image.medium }}" rel="mobile-images" class="swipebox visible-xs" title="{{ place.name }}"><img src="{{ image.thumb }}" class="img-responsive"/></a>
+                      {% endfor %}
+                      </div>
+                    </div>
+                  {% endif %}
+
+                </div>
+              </section>
+            {% endfor %}
+          </div>
+        {% endfor %}
+      
+      </main>
+    </div>
+  </body>
+</html>

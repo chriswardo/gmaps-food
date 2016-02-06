@@ -10,9 +10,9 @@ else {
 process.stderr.write( "Processing JSON...\n" );
 
 
-var dishes = require('./' + folder + '/dishes.json');
-var defaultDiacriticsRemovalap = require('./diacritics.json');
-const LOCATION_GROUPS = require('./' + folder + '/locations.json');
+var dishes = require('../maps/' + folder + '/dishes.json');
+var defaultDiacriticsRemovalap = require('../diacritics.json');
+const LOCATION_GROUPS = require('../maps/' + folder + '/locations.json');
 
 
 var stdin = process.stdin,

@@ -2,9 +2,9 @@ var Promise = require('promise');
 var exec = require('promised-exec');
 
 const API_KEY = "AIzaSyDdJdIoqW-kaIvI25iEkSu1CgEkXpTNtGU";
-const LOCATIONS_DB = "./locations_db.json"; // lat,lng => location data
-const PLACE_ID_DB = "./place_id_db.json"; // lat,lng => place_id
-const PLACE_DETAILS_DB = "./place_details_db.json"; // place_id => place data
+const LOCATIONS_DB = "../db/locations_db.json"; // lat,lng => location data
+const PLACE_ID_DB = "../db/place_id_db.json"; // lat,lng => place_id
+const PLACE_DETAILS_DB = "../db/place_details_db.json"; // place_id => place data
 
 if ( process.argv.length < 3 ) {
   process.stderr.write( "Usage: " + process.argv[0] + " " + process.argv[1] + " [FOLDER]\n" );
@@ -15,8 +15,8 @@ else {
 }
   
 
-const PLACES_DATA = "./" + folder + "/basic.json";
-const PLACES_DATA_COMBINED = "./" + folder + "/combined.json";
+const PLACES_DATA = "../maps/" + folder + "/basic.json";
+const PLACES_DATA_COMBINED = "../maps/" + folder + "/combined.json";
 
 var places = require(PLACES_DATA);
 var locations_db = require(LOCATIONS_DB);

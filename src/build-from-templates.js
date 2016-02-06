@@ -9,12 +9,12 @@ else {
 }
 process.stderr.write( "Building html from " + folder + " template.\n" );
 
-var dishes = require('./' + folder + '/dishes.json');
-var glossary = require('./' + folder + '/glossary.json');
-var locations = require('./' + folder + '/locations.json');
+var dishes = require('../maps/' + folder + '/dishes.json');
+var glossary = require('../maps/' + folder + '/glossary.json');
+var locations = require('../maps/' + folder + '/locations.json');
 
 
-var unorderedFoodByLocation = require('./' + folder + '/by-location.json');
+var unorderedFoodByLocation = require('../maps/' + folder + '/by-location.json');
 
 function compare(a,b) {
   if (a.order < b.order)
