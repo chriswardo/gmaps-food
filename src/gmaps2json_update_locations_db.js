@@ -1,10 +1,12 @@
 var Promise = require('promise');
 var exec = require('promised-exec');
 
-const API_KEY = "AIzaSyDdJdIoqW-kaIvI25iEkSu1CgEkXpTNtGU";
 const LOCATIONS_DB = "../db/locations_db.json"; // lat,lng => location data
 const PLACE_ID_DB = "../db/place_id_db.json"; // lat,lng => place_id
 const PLACE_DETAILS_DB = "../db/place_details_db.json"; // place_id => place data
+
+
+var cfg = require('../config.json'); //app config
 
 if ( process.argv.length < 3 ) {
   process.stderr.write( "Usage: " + process.argv[0] + " " + process.argv[1] + " [FOLDER]\n" );
@@ -108,8 +110,8 @@ function getLocationData( place ) {
     }
     else {
     
-      //var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lng + "," + lat + "&radius=1&types=food&key=" + API_KEY + "&sensor=true";
-      var url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lng + "," + lat + "&key=" + API_KEY + "&sensor=true";
+      //var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lng + "," + lat + "&radius=1&types=food&key=" + cfg.API_KEY + "&sensor=true";
+      var url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lng + "," + lat + "&key=" + cfg.API_KEY + "&sensor=true";
   
       var cmd = "curl --silent '" + url + "' | jq '. | { address: .results[0].address_components[1].long_name, city: .results[0].address_components[-3].long_name, region: .results[0].address_components[-2].long_name, country: .results[0].address_components[-1].long_name, countryCode: .results[0].address_components[-1].short_name, location: [.results[0].address_components[].long_name], status: .status }'";
   
@@ -196,9 +198,9 @@ function getPlaceID( place ) {
 		  place.name.replace( /^(.+)\s*\(([^\)]+)\)$/gi, function(all, a, b) { namestart = a; }.bind(this) );
 		  //process.stderr.write( 
 
-      var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lng + "," + lat + "&key=" + API_KEY + "&sensor=true&rankby=distance&keyword=" + namestart.replace(/ /g,'+').replace(/\'/g,"%27");
+      var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lng + "," + lat + "&key=" + cfg.API_KEY + "&sensor=true&rankby=distance&keyword=" + namestart.replace(/ /g,'+').replace(/\'/g,"%27");
 
-      //var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lng + "," + lat + "&radius=2&types=food&key=" + API_KEY + "&sensor=true";
+      //var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lng + "," + lat + "&radius=2&types=food&key=" + cfg.API_KEY + "&sensor=true";
      // var url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lng + "," + lat + "&key=AIzaSyB9cSxcJcVGp3jmdN8VPj7itbk-n9FFnCA&sensor=true";
   
       var cmd = "curl --silent '" + url + "' | jq '. | { place_id: .results[0].place_id, name: .results[0].name, status }'";
@@ -285,7 +287,7 @@ function getPlaceDetails( place ) {
     }
     else {
     
-      var url = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + place_id + "&key=" + API_KEY + "&sensor=true";
+      var url = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + place_id + "&key=" + cfg.API_KEY + "&sensor=true";
   
       var cmd = "curl --silent '" + url + "' | jq '. | { place_name: .result.name, address: .result.vicinity, phone: .result.formatted_phone_number, website: .result.website, types: .result.types, status }'";
   
