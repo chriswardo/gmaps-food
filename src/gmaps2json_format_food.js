@@ -152,23 +152,80 @@ function processPlaces() {
   	places[i].links.push( { title: 'Google Maps', url: 'https://www.google.com/maps/place/' + places[i].lng + ',' + places[i].lat, icon: 'map' } );
 		
 		
-		places[i].favourite = places[i].visited && ( places[i].description.toLowerCase().replace('recommended by','').replace('recommended from','').replace('recommended dish','').replace("chef's recommendation","").indexOf('recommend') >= 0 );
+		places[i].favourite = places[i].visited && ( places[i].description.toLowerCase().replace('recommended by','').replace('recommended from','').replace('recommended if','').replace('recommended dish','').replace("chef's recommendation","").indexOf('recommend') >= 0 );
 		
 		if ( places[i].icon == "#icon-1075" ) {
+		  places[i].category = "food";
 		  places[i].type = "Street Food";
 		  places[i].icon = "local_dining";
 		}
 		else if ( places[i].icon == "#icon-1087" ) {
+		  places[i].category = "food";
 		  places[i].type = "Dessert";
 		  places[i].icon = "cake";
 		}
+		else if ( places[i].icon == "#icon-1085" ) {
+		  places[i].category = "food";
+		  places[i].type = "Restaurant";
+		  places[i].icon = "restaurant";
+		}
 		else if ( places[i].icon == "#icon-991" ) {
+		  places[i].category = "drink";
 		  places[i].type = "Cafe";
 		  places[i].icon = "local_cafe";
 		}
+		else if ( places[i].icon == "#icon-979" ) {
+		  places[i].category = "drink";
+		  places[i].type = "Bar";
+		  places[i].icon = "local_bar";
+		}
+		else if ( places[i].icon == "#icon-1035" ) {
+		  places[i].category = "accommodation";
+		  places[i].type = "Accommodation";
+		  places[i].icon = "hotel";
+		}
+		else if ( places[i].icon == "#icon-1001" ) {
+		  places[i].category = "sights";
+		  places[i].type = "Cinema";
+		  places[i].icon = "local_movies";
+		}
+		else if ( places[i].icon == "#icon-1095" ) {
+		  places[i].category = "sights";
+		  places[i].type = "Shopping";
+		  places[i].icon = "shopping_basket";
+		}
+		else if ( places[i].icon == "#icon-1289" ||  places[i].icon == "#icon-1317" ) {
+		  places[i].category = "sights";
+		  places[i].type = "Museum/Temple";
+		  places[i].icon = "account_balance";
+		}
+		else if ( places[i].icon == "#icon-993" || places[i].icon == "#icon-1283" ) {
+		  places[i].category = "sights";
+		  places[i].type = "Point of Interest";
+		  places[i].icon = "local_see";
+		}
+		else if ( places[i].icon == "#icon-967" ) {
+		  places[i].type = "ATM";
+		  places[i].icon = "local_atm";
+		}
+		else if ( places[i].icon == "#icon-1395" ) {
+		  places[i].category = "sights";
+		  places[i].type = "Swimming";
+		  places[i].icon = "pool";
+		}
+		else if ( places[i].icon == "#icon-1355" ) {
+		  places[i].category = "sights";
+		  places[i].type = "Beach";
+		  places[i].icon = "beach_access";
+		}
+		else if ( places[i].icon == "#icon-1371" ) {
+		  places[i].category = "sights";
+		  places[i].type = "Walk";
+		  places[i].icon = "directions_walk";
+		}
 		else {
-		  places[i].type = "Restaurant";
-		  places[i].icon = "local_dining";
+		  places[i].type = "Other";
+		  places[i].icon = "place";
 		}
 		
 		var desc_lines = [];

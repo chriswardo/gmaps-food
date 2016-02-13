@@ -153,6 +153,7 @@
            <h2>{{ locationGroup|first.location_group }}</h2>
   
             {% for place in locationGroup %}
+              {% if place.category == "food" %}
               <section class="" id="{{ place.slug }}">
                 <div class="container-fluid">
                   
@@ -209,6 +210,7 @@
 
                 </div>
               </section>
+              {% endif %}
             {% endfor %}
           </div>
         {% endfor %}

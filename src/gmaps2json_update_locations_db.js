@@ -1,12 +1,15 @@
 var Promise = require('promise');
 var exec = require('promised-exec');
+var path = require('path');
+var fs = require('fs');
 
-const LOCATIONS_DB = "../db/locations_db.json"; // lat,lng => location data
-const PLACE_ID_DB = "../db/place_id_db.json"; // lat,lng => place_id
-const PLACE_DETAILS_DB = "../db/place_details_db.json"; // place_id => place data
+const LOCATIONS_DB = path.resolve( "./db/locations_db.json" ); // lat,lng => location data
+const PLACE_ID_DB = path.resolve( "./db/place_id_db.json" ); // lat,lng => place_id
+const PLACE_DETAILS_DB = path.resolve( "./db/place_details_db.json" ); // place_id => place data
 
+const CONFIG_FILE = path.resolve( "./config.json" );
 
-var cfg = require('../config.json'); //app config
+var cfg = require(CONFIG_FILE); //app config
 
 if ( process.argv.length < 3 ) {
   process.stderr.write( "Usage: " + process.argv[0] + " " + process.argv[1] + " [FOLDER]\n" );
@@ -17,15 +20,16 @@ else {
 }
   
 
-const PLACES_DATA = "../maps/" + folder + "/basic.json";
-const PLACES_DATA_COMBINED = "../maps/" + folder + "/combined.json";
+const PLACES_DATA = path.resolve( "./maps/" + folder + "/basic.json" );
+const PLACES_DATA_COMBINED = path.resolve( "./maps/" + folder + "/combined.json" );
+
+
 
 var places = require(PLACES_DATA);
 var locations_db = require(LOCATIONS_DB);
 var place_id_db = require(PLACE_ID_DB);
 var place_details_db = require(PLACE_DETAILS_DB);
 
-var fs = require('fs');
 
 
 // TO RUN:
@@ -126,7 +130,7 @@ function getLocationData( place ) {
             data = json;
           
             locations_db[ place.lng + "," + place.lat ] = data;
-            fs.writeFile(LOCATIONS_DB, JSON.stringify(locations_db), function(err) {} );
+            fs.writeFile(LOCATIONS_DB, JSON.stringify(locations_db), function(err) { console.log("E"); } );
             fulfill(data);
           }
           else {
