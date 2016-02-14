@@ -146,14 +146,13 @@
         
 
 
-        {% for locationGroup in foodByLocation %}
+        {% for location_slug, place_categories in places %}
 
-          <div class="tab" id="{{ locationGroup|first.location_slug }}">
+          <div class="tab" id="{{ location_slug }}">
 
-           <h2>{{ locationGroup|first.location_group }}</h2>
+           <h2>{{ place_categories.food|first.location_group }}</h2>
   
-            {% for place in locationGroup %}
-              {% if place.category == "food" %}
+            {% for place in place_categories.food %}
               <section class="" id="{{ place.slug }}">
                 <div class="container-fluid">
                   
@@ -210,7 +209,6 @@
 
                 </div>
               </section>
-              {% endif %}
             {% endfor %}
           </div>
         {% endfor %}

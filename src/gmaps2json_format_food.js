@@ -154,6 +154,7 @@ function processPlaces() {
 		
 		places[i].favourite = places[i].visited && ( places[i].description.toLowerCase().replace('recommended by','').replace('recommended from','').replace('recommended if','').replace('recommended dish','').replace("chef's recommendation","").indexOf('recommend') >= 0 );
 		
+		places[i].category = "other";
 		if ( places[i].icon == "#icon-1075" ) {
 		  places[i].category = "food";
 		  places[i].type = "Street Food";

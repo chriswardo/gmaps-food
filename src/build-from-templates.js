@@ -14,7 +14,7 @@ var glossary = require('../maps/' + folder + '/glossary.json');
 var locations = require('../maps/' + folder + '/locations.json');
 
 
-var unorderedFoodByLocation = require('../maps/' + folder + '/by-location.json');
+//var unorderedFoodByLocation = require('../maps/' + folder + '/by-location.json');
 
 function compare(a,b) {
   if (a.order < b.order)
@@ -23,19 +23,22 @@ function compare(a,b) {
     return 1;
   return 0;
 }
-
+/*
 var foodByLocation = [];
-for ( var i = 0; i < unorderedFoodByLocation.length; i++ ) {
-  foodByLocation.push( unorderedFoodByLocation[i].sort(compare) );
-}
+for ( var location_slug in unorderedFoodByLocation ) {
+  foodByLocation.push( unorderedFoodByLocation[location_slug].sort(compare) );
+}*/
+
+var places = require('../maps/' + folder + '/location-category.json');
 
 
 // connect dishes to locations
 for ( var i = 0; i < dishes.length; i++ ) {
   dishes[i].places = new Array();
-  for ( var j = 0; j < foodByLocation.length; j++ ) {
-    for ( var k = 0; k < foodByLocation[j].length; k++ ) {
-      var place = foodByLocation[j][k];
+  for ( var location_slug in places ) {
+  //for ( var j = 0; j < foodByLocation.length; j++ ) {
+    for ( var k = 0; k < places[location_slug].food.length; k++ ) {
+      var place = places[location_slug].food[k];
     
       var search = dishes[i].search || new Array();
       search.push( dishes[i].name );
@@ -70,4 +73,4 @@ function isPlaceMatch( place, search, exclude ) {
 var tpl = swig.compileFile('./templates/' + folder + '.html');
 
 
-console.log(tpl({ foodByLocation: foodByLocation, locations: locations, dishes: dishes, version: 'live' }));
+console.log(tpl({ places: places, locations: locations, dishes: dishes, version: 'live' }));
