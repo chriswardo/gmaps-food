@@ -262,7 +262,7 @@ function getPlaceID( place ) {
 
 function runPlaceDetails() {
   getAllPlaceDetails( places ).catch(function (errorObject) {
-    process.stderr.write( "EXCEPTION" );
+    process.stderr.write( "EXCEPTION: " );
     console.log( errorObject );
   }).done(function (results) {
     process.stderr.write( "Got place details for " + (results.length - places.length) + " new places.\n" );
@@ -293,7 +293,7 @@ function getPlaceDetails( place ) {
     
       var url = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + place_id + "&key=" + cfg.API_KEY + "&sensor=true";
   
-      var cmd = "curl --silent '" + url + "' | jq '. | { place_name: .result.name, address: .result.vicinity, phone: .result.formatted_phone_number, website: .result.website, types: .result.types, status }'";
+      var cmd = "curl --silent '" + url + "' | jq '. | { place_name: .result.name, address: .result.vicinity, phone: .result.formatted_phone_number, website: .result.website, types: .result.types, status, hours: .result.opening_hours.weekday_text }'";
   
       exec_promise = exec(cmd);
       exec_promise.then(function (stdout) {
@@ -317,7 +317,7 @@ function getPlaceDetails( place ) {
           }
           else {
             //process.stderr.write( 'X' );
-            reject( json.status );
+            reject( 'place_id=' + place_id + ',status=' + json.status );
           }
         }
         else {

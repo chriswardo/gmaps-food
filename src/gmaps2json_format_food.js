@@ -146,13 +146,15 @@ function processPlaces() {
 		  places[i].cuisine = b;
 		}.bind(this) );
 		
+		
+		
     // TODO: check this website against the other websites from the description. Maybe compare domains?
     if ( places[i].website ) places[i].links.push( { title: 'Website', url: places[i].website, icon: 'open_in_new' } );
 		
   	places[i].links.push( { title: 'Google Maps', url: 'https://www.google.com/maps/place/' + places[i].lng + ',' + places[i].lat, icon: 'map' } );
 		
 		
-		places[i].favourite = places[i].visited && ( places[i].description.toLowerCase().replace('recommended by','').replace('recommended from','').replace('recommended if','').replace('recommended dish','').replace("chef's recommendation","").indexOf('recommend') >= 0 );
+		places[i].favourite = places[i].visited && ( places[i].description.toLowerCase().replace('recommended by','').replace('recommended from','').replace('recommended if','').replace('recommended dish','').replace("chef's recommendation","").indexOf('recommended') >= 0 );
 		
 		places[i].category = "other";
 		if ( places[i].icon == "#icon-1075" ) {
@@ -283,10 +285,15 @@ function processPlaces() {
 			}
 			else if ( line.length > 0 ) {
 			  //Get address
-			  var regexp = /^Address\:\s+(.+)$/gi;
+			  var regexp = /^([^\s]+)\:\s+(.+)$/gi;
         var m = regexp.exec(line);
         if (m) {
-          places[i].address = m[1];
+          if ( m[1].toLowerCase() == "address" ) places[i].address = m[2];
+          else if ( m[1].toLowerCase() == "hours" || m[1].toLowerCase() == "open" ) places[i].hours = [ m[2] ];
+          else if ( m[1].toLowerCase() == "update" ) desc_lines.push( '<p><i class="material-icons">new_releases</i> ' + line + '</p>' );
+          else if ( m[1].toLowerCase() == "note" ) desc_lines.push( '<p><i class="material-icons">speaker_notes</i> ' + line + '</p>' );
+          else if ( m[1].toLowerCase() == "tip" ) desc_lines.push( '<p><i class="material-icons">lightbulb_outline</i> ' + line + '</p>' );
+          else desc_lines.push( "<p>" + line + "</p>" );
         }
 			  else {
           //line = this.linkGlossary( line );

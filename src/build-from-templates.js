@@ -1,5 +1,13 @@
 var swig = require('swig');
 
+
+swig.setFilter('substr', function (text,start,len) {
+
+
+  return text.substr(start,len);
+  
+});
+
 if ( process.argv.length < 3 ) {
   process.stderr.write( "Usage: " + process.argv[0] + " " + process.argv[1] + " [FOLDER]\n" );
   process.exit(1);
