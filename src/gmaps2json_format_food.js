@@ -92,6 +92,44 @@ function getLocationSlug( location_name ) {
   return slug;
 }
 
+function formatHours( hours ) {
+  var daily = [];
+  hours.forEach( function( hour ) {
+    var regexp = /^(.+)\:\s+(.+)$/gi;
+    var m = regexp.exec(hour);
+    if (m) {
+      day = m[1].substr(0,3);
+      time = m[2].replace(/ PM/g, 'PM').replace(/ AM/g, 'AM').replace(/:00/g,'');
+      daily.push( { day: day, time: time } );
+    }
+  });
+  var daily_groups = [];
+  var current_time = '';
+  var current_days = [];
+  //console.log(daily);
+  var last_day;
+  daily.forEach( function( d ) {
+    //console.log( 'time = ' + d.time + ', day = ' + d.day );
+    if ( d.time != current_time && current_time != '' ) {
+      //change
+      if ( current_days.length == 1 ) daily_groups.push( { day: current_days[0], time: current_time } );
+      else daily_groups.push( { day: current_days[0] + ' - ' + current_days[ current_days.length-1 ], time: current_time } );
+      
+      current_days = [];
+    }
+    current_days.push( d.day );
+    current_time = d.time;
+    last_day = d;
+    
+  });
+  if ( current_days.length == 1 ) daily_groups.push( { day: current_days[0], time: current_time } );
+  else daily_groups.push( { day: current_days[0] + ' - ' + current_days[ current_days.length-1 ], time: current_time } );
+  
+  return daily_groups;
+
+}
+
+
 
 function processPlaces() {
   places.forEach( function(place,i) {
@@ -111,7 +149,7 @@ function processPlaces() {
     places[i].cuisine = 'Local';
     places[i].links = [];
     places[i].order = i;
-    places[i].slug = removeDiacritics( places[i].name ).toLowerCase().replace(/[\s\-]+/g,'-');
+    places[i].slug = removeDiacritics( places[i].name ).toLowerCase().replace(')','').replace('(','').replace(/[\s\-]+/g,'-');
     //places[i][0] = i; //for sorting
     
     var images = places[i].images;
@@ -230,6 +268,8 @@ function processPlaces() {
 		  places[i].type = "Other";
 		  places[i].icon = "place";
 		}
+		
+		if ( places[i].hours ) places[i].hours = formatHours( places[i].hours );
 		
 		var desc_lines = [];
 		//var images = [];
