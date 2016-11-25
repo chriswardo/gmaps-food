@@ -15,6 +15,7 @@ var defaultDiacriticsRemovalap = require('../diacritics.json');
 const LOCATION_GROUPS = require('../maps/' + folder + '/locations.json');
 
 
+
 var stdin = process.stdin,
     stdout = process.stdout,
     inputChunks = [],
@@ -156,20 +157,26 @@ function processPlaces() {
     places[i].images = [];
     
     images.forEach( function(img) {
+    
+      img = img.replace('https://','http://');
       if ( img.indexOf('imgur.com') >= 0 ) {
         places[i].images.push( { thumb: img.replace('.jpg', 's.jpg', 'i'), medium: img.replace('.jpg', 'l.jpg', 'i'), large: img } );
       }
       else if ( img.indexOf('googleusercontent.com') >= 0 ) {
-        //img = img.substr(0, img.indexOf('
         var regexp = /^(.+)(\=w[0-9]+.*)$/gi;
         var m = regexp.exec(img);
         if (m) {
           img = m[1];
-          places[i].images.push( { thumb: img + '=s80-c', medium: img + '=w800', large: img + '=w1200' } );
         }
-        else {
-          places[i].images.push( { thumb: img, medium: img, large: img } );
+        places[i].images.push( { thumb: img + '=s80-c', medium: img + '=w800', large: img + '=w1200' } );
+      }
+      else if ( img.indexOf('contentful.com') >= 0 ) {
+        var regexp = /^(.+)(\?.*)$/gi;
+        var m = regexp.exec(img);
+        if (m) {
+          img = m[1];
         }
+        places[i].images.push( { thumb: img + '?fm=jpg&q=70&h=80', medium: img + '?fm=jpg&q=70&w=800', large: img + '?fm=jpg&q=70&w=1200' } );
       }
       else {
         places[i].images.push( { thumb: img, medium: img, large: img } );
@@ -211,12 +218,12 @@ function processPlaces() {
 		  places[i].icon = "restaurant";
 		}
 		else if ( places[i].icon == "#icon-991" ) {
-		  places[i].category = "drink";
+		  places[i].category = "food";
 		  places[i].type = "Cafe";
 		  places[i].icon = "local_cafe";
 		}
 		else if ( places[i].icon == "#icon-979" ) {
-		  places[i].category = "drink";
+		  places[i].category = "food";
 		  places[i].type = "Bar";
 		  places[i].icon = "local_bar";
 		}
@@ -325,7 +332,7 @@ function processPlaces() {
 			}
 			else if ( line.length > 0 ) {
 			  //Get address
-			  var regexp = /^([^\s]+)\:\s+(.+)$/gi;
+			  var regexp = /^(.+)\:\s+(.+)$/gi;
         var m = regexp.exec(line);
         if (m) {
           if ( m[1].toLowerCase() == "address" ) places[i].address = m[2];
@@ -333,6 +340,7 @@ function processPlaces() {
           else if ( m[1].toLowerCase() == "update" ) desc_lines.push( '<p><i class="material-icons">new_releases</i> ' + line + '</p>' );
           else if ( m[1].toLowerCase() == "note" ) desc_lines.push( '<p><i class="material-icons">speaker_notes</i> ' + line + '</p>' );
           else if ( m[1].toLowerCase() == "tip" ) desc_lines.push( '<p><i class="material-icons">lightbulb_outline</i> ' + line + '</p>' );
+          else if ( m[1].toLowerCase() == "last visit" || m[1].toLowerCase() == "last visited" ) places[i].last_visit = [ m[2] ];
           else desc_lines.push( "<p>" + line + "</p>" );
         }
 			  else {

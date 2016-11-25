@@ -22,6 +22,45 @@ var glossary = require('../maps/' + folder + '/glossary.json');
 var locations = require('../maps/' + folder + '/locations.json');
 
 
+String.prototype.toHtmlEntities = function() {
+    return this.replace(/./gm, function(s) {
+        return "&#" + s.charCodeAt(0) + ";";
+    });
+};
+
+
+function linkDishTooltips( text, dish ) {
+
+  var textWithoutExcludes = text.toLowerCase();
+  var search_exclude = dish.search_exclude || [];
+  for ( var i = 0; i < search_exclude.length; i++ ) {
+    textWithoutExcludes = textWithoutExcludes.replace( new RegExp(search_exclude[i], 'gi'), '' );
+  }
+  var search = dish.search || new Array();
+  search.push( dish.name );
+  
+  for ( var i = 0; i < search.length; i++ ) {
+    if ( search[i].length > 2 && textWithoutExcludes.indexOf( search[i].toLowerCase() ) >= 0 ) {
+      var desc = '<h2>' + dish.name + '</h2><p>' + dish.description + '</p>';
+      text = text.replace( new RegExp(search[i], 'gi'), '<span data-tooltip="' + desc.toHtmlEntities() + '">' + search[i] + '</span>' );
+      textWithoutExcludes = textWithoutExcludes.replace( new RegExp(search[i], 'gi'), '' );
+    }
+  }
+  
+  return text;
+    
+}
+
+swig.setFilter('tooltipDishes', function (text) {
+
+  for ( var i = 0; i < dishes.length; i++ ) {
+  
+    text = linkDishTooltips( text, dishes[i] );
+
+  }
+  return text;
+});
+
 //var unorderedFoodByLocation = require('../maps/' + folder + '/by-location.json');
 
 function compare(a,b) {
@@ -31,11 +70,11 @@ function compare(a,b) {
     return 1;
   return 0;
 }
-/*
-var foodByLocation = [];
-for ( var location_slug in unorderedFoodByLocation ) {
-  foodByLocation.push( unorderedFoodByLocation[location_slug].sort(compare) );
-}*/
+
+var locations_by_slug = {};
+for ( var i = 0; i < locations.length; i++ ) {
+  locations_by_slug[locations[i].slug] = locations[i];
+}
 
 var places = require('../maps/' + folder + '/location-category.json');
 
@@ -81,4 +120,4 @@ function isPlaceMatch( place, search, exclude ) {
 var tpl = swig.compileFile('./templates/' + folder + '.html');
 
 
-console.log(tpl({ places: places, locations: locations, dishes: dishes, version: 'live' }));
+console.log(tpl({ places, locations, locations_by_slug, dishes, version: 'live' }));
