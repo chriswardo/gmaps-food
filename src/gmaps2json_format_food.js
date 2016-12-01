@@ -311,6 +311,9 @@ function processPlaces() {
 				else if ( line.indexOf("tripadvisor.") > -1 ) {
 					places[i].links.push( { title: link_title || 'TripAdvisor', url: line, icon: 'open_in_new' } );
 				}
+				else if ( line.indexOf("foodadvisor.") > -1 ) {
+					places[i].links.push( { title: link_title || 'FoodAdvisor', url: line, icon: 'open_in_new' } );
+				}
 				else if ( line.indexOf("agoda.") > -1 ) {
 					if ( line.indexOf("cid=1726803") < 0 ) line += "?cid=1726803";
 					places[i].links.push( { title: link_title || 'Agoda', url: line, icon: 'open_in_new' } );
@@ -344,7 +347,10 @@ function processPlaces() {
           else if ( m[1].toLowerCase() == "rating" || m[1].toLowerCase() == "score" ) {
             var regscore = /^\s*([0-9\.]+)\s*\/\s*([0-9]+)\s*$/gi;
             var score = regscore.exec(m[2]);
-            if (score) places[i].rating = parseInt(parseFloat(score[1])/parseFloat(score[2])*10);
+            if (score) {
+              places[i].rating = parseFloat(score[1])/parseFloat(score[2])*10;
+              places[i].ratingStars = parseInt(parseFloat(score[1])/parseFloat(score[2])*10)/2;
+            }
           }
           else desc_lines.push( "<p>" + line + "</p>" );
         }

@@ -243,16 +243,16 @@
                             {% if not place.visited %}<small>(NOT VISITED)</small>{% endif %}
                           </div>
                           <div class="rating" data-rating="{{ place.rating }}" title="{{ place.rating }} / 10">
-                            {% if place.rating == 1 %}<i class="material-icons">star_half</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
-                            {% elif place.rating == 2 %}<i class="material-icons">star</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
-                            {% elif place.rating == 3 %}<i class="material-icons">star</i><i class="material-icons">star_half</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
-                            {% elif place.rating == 4 %}<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
-                            {% elif place.rating == 5 %}<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
-                            {% elif place.rating == 6 %}<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
-                            {% elif place.rating == 7 %}<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i><i class="material-icons">star_border</i>
-                            {% elif place.rating == 8 %}<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_border</i>
-                            {% elif place.rating == 9 %}<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i>
-                            {% elif place.rating == 10 %}<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i>
+                            {% if place.ratingStars == 0.5 %}<i class="material-icons">star_half</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
+                            {% elif place.ratingStars == 1 %}<i class="material-icons">star</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
+                            {% elif place.ratingStars == 1.5 %}<i class="material-icons">star</i><i class="material-icons">star_half</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
+                            {% elif place.ratingStars == 2 %}<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
+                            {% elif place.ratingStars == 2.5 %}<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
+                            {% elif place.ratingStars == 3 %}<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
+                            {% elif place.ratingStars == 3.5 %}<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i><i class="material-icons">star_border</i>
+                            {% elif place.ratingStars == 4 %}<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_border</i>
+                            {% elif place.ratingStars == 4.5 %}<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i>
+                            {% elif place.ratingStars == 5 %}<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i>
                             {% endif %}
                           </div>
                         </div>
@@ -262,24 +262,27 @@
                 
                     <div class="no-poster">
                       <div class="overlay">
-                        {% if place.favourite %}<i class="material-icons red" title="Favourite!">favorite</i>{% elif place.visited %}<i class="material-icons green" title="Have visited">{{ place.icon }}</i>{% else %}<i class="material-icons grey" title="Not visited">{{ place.icon }}</i>{% endif %}
+
                         <div class="flex-column">
+
                           <h4>{{ place.name }}</h4>
                           <div class="place-type">
+                            {% if place.favourite %}<i class="material-icons red" title="Favourite!">favorite</i>{% elif place.visited %}<i class="material-icons green" title="Have visited">{{ place.icon }}</i>{% else %}<i class="material-icons grey" title="Not visited">{{ place.icon }}</i>{% endif %}
+
                             {{ place.cuisine|upper }} {{ place.type|upper }}
                             {% if not place.visited %}<small>(NOT VISITED)</small>{% endif %}
                           </div>
                           <div class="rating" data-rating="{{ place.rating }}" title="{{ place.rating }} / 10">
-                            {% if place.rating == 1 %}<i class="material-icons">star_half</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
-                            {% elif place.rating == 2 %}<i class="material-icons">star</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
-                            {% elif place.rating == 3 %}<i class="material-icons">star</i><i class="material-icons">star_half</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
-                            {% elif place.rating == 4 %}<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
-                            {% elif place.rating == 5 %}<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
-                            {% elif place.rating == 6 %}<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
-                            {% elif place.rating == 7 %}<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i><i class="material-icons">star_border</i>
-                            {% elif place.rating == 8 %}<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_border</i>
-                            {% elif place.rating == 9 %}<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i>
-                            {% elif place.rating == 10 %}<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i>
+                            {% if place.ratingStars == 0.5 %}<i class="material-icons">star_half</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
+                            {% elif place.ratingStars == 1 %}<i class="material-icons">star</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
+                            {% elif place.ratingStars == 1.5 %}<i class="material-icons">star</i><i class="material-icons">star_half</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
+                            {% elif place.ratingStars == 2 %}<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
+                            {% elif place.ratingStars == 2.5 %}<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
+                            {% elif place.ratingStars == 3 %}<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
+                            {% elif place.ratingStars == 3.5 %}<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i><i class="material-icons">star_border</i>
+                            {% elif place.ratingStars == 4 %}<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_border</i>
+                            {% elif place.ratingStars == 4.5 %}<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i>
+                            {% elif place.ratingStars == 5 %}<i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i>
                             {% endif %}
                           </div>
                         </div>

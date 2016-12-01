@@ -20,7 +20,12 @@
   {
     "name": "Banana Leaf rice",
     "search": [ "Banana leaf" ],
-    "description": "Pretty similar to nasi kandar but served on a banana leaf 'plate'. You should use your right hand to eat and then it's customary to fold the top half of the leaf (furthest from you) towards you after you've finished as a sign that you enjoyed the meal.",
+    "description": "Pretty similar to nasi kandar but served on a banana leaf 'plate' with various sides.",
+    "how": [
+      "They will put a large banana leaf in front of you, add some white rice (you can ask for more/less), then they will add some fairly bland curry sauces to the rice (it's normal to have chicken, veg & fish options to choose from). At the top of the leaf they will place some small piles of side curries, chutneys, etc (usually around 3) and you should get some poppadoms too. All of this is the base to banana leaf curry and although you might be lucky, these aren't usually spectacular. Someone should come round with the main meat/fish items which should be full of flavour.",
+      "Use your right hand to pull any meat apart and mix the rice with the sauce, before pushing it in to your mouth. It can be quite messy but it's worth it! There is always a sink and soup to clean up afterwards.",
+      "It's customary to fold the top half of the leaf (furthest from you) towards you after you've finished as a sign that you enjoyed the meal."
+    ],
     "price": "RM5 - RM10",
     "image": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Bananaleafrice001.jpg"
   },
