@@ -114,17 +114,19 @@ body {
             color: white;
             width: 100%;
             height: @navheight;
-            display: block;
+            
+            .flex();
+            .flex-justify(center);
+            .flex-align-items(center);
         
 
-            .flex-align-items(center);
             border-top: 3px solid transparent;
             border-bottom: 3px solid transparent;
-            padding: 8px 12px;
+            //padding: 8px 12px;
         
             @media screen and (min-width:768px) {
               text-align: center;
-              padding: 10px 0 0 0;
+              //padding: 10px 0 0 0;
             }
         
             i.material-icons {
@@ -208,10 +210,34 @@ body {
           }
         }
       }
+      
+      .nearby-sort {
+        .flex();
+        .flex-align-items(center);
+        .flex-justify(center);
+        padding-top: 15px;
+        
+        > label, > span {
+          font-weight: 300;
+          padding: 0 20px;
+        }
+      }
     
       &#map {
         height: 100%;
         position: relative;
+      }
+      
+      .btn {
+        .flex();
+        .flex-align-items(center);
+        .flex-justify(center);
+        text-transform: uppercase;
+        font-weight: 200;
+        
+        i {
+          padding-right: 8px;
+        }
       }
       
       &#dishes {
@@ -223,6 +249,15 @@ body {
           ul {
             padding-left: 15px;
           }
+        }
+        
+        #nearby-notice, #nearby-fail, #nearby-search {
+          width: 800px;
+          max-width: 100%;
+          margin: 0 auto;
+          padding: 20px;
+          margin-bottom: 20px;
+          cursor: pointer;
         }
       
         .dish {
@@ -300,10 +335,12 @@ body {
         .overlay {
         
           &.gradient {
-            background: -moz-linear-gradient(top, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.65) 100%); /* FF3.6-15 */
-            background: -webkit-linear-gradient(top, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.65) 100%); /* Chrome10-25,Safari5.1-6 */
-            background: linear-gradient(to bottom, rgba(0,0,0,.20) 0%,rgba(0,0,0,0.65) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+            background: rgba(0,0,0,0.6);
+            transition: background 1s;
+            
+            &:hover {
+              background: rgba(0,0,0,0.3);
+            }
           }
           
           width: 100%;
@@ -320,15 +357,21 @@ body {
             font-size: 40px;
             font-weight: 100;
             text-transform: uppercase;
+            text-align: center;
           }
-          .material-icons {
-            font-size: 30px;
+          > .material-icons {
             margin-right: 20px;
           }
+          
         }
         .place-type {
-          color: rgba(255,255,255,0.6);
-          font-weight: 200;
+          color: rgba(255,255,255,0.8);
+          font-weight: 300;
+          
+          
+          @media screen and (min-width:768px) {
+            font-weight: 100;
+          }
           
         }
         
@@ -338,6 +381,12 @@ body {
           cursor: pointer;
           position: relative;
           overflow: hidden;
+          
+          .rating .material-icons {
+            font-size: 30px;
+            color: rgba(255,255,255,0.8);
+          }
+
           
           &.favourite {
             height: 350px;
@@ -352,9 +401,6 @@ body {
             background-size: cover;
             background-color: black;
             background-position: center;
-            -webkit-filter: blur(3px);
-            filter: blur(3px);
-            transition: filter 1s;
             
             background-position-y: 50%;
             background-repeat: no-repeat;
@@ -362,7 +408,6 @@ body {
           
           &:hover {
             .poster-image {
-              filter: none;
             }
           }
         }
@@ -374,6 +419,11 @@ body {
           
           .overlay {
             position: static;
+          }
+          
+          .rating .material-icons {
+            font-size: 30px;
+            color: rgba(0,0,0,0.8);
           }
           
           h4 {
@@ -470,6 +520,7 @@ body {
         .flex-column {
           .flex();
           .flex-direction(column);
+          .flex-align-items(center);
         }
           
   

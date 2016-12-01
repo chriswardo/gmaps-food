@@ -28,12 +28,9 @@ $(document).ready(function() {
     
     if ( $(this).attr('data-sort') ) {
       var sortBy = $(this).attr('data-sort');
-      $('.sections').each( function() {
-        $(this).find('section').sort(function(a,b) {
-          return parseFloat($(a).data( sortBy )) - parseFloat($(b).data( sortBy ));
-        }).appendTo($(this));
-      });
+      sortPlaces( $(this).closest('.tab').find('.sections'), sortBy );
     }
+    
   });
   setPosters();
   
@@ -42,6 +39,15 @@ $(document).ready(function() {
   
   });
   
+  function sortPlaces( sections, sortBy ) {
+    sections.each( function() {
+      $(this).find('section').sort(function(a,b) {
+        return parseFloat($(a).data( sortBy )) - parseFloat($(b).data( sortBy ));
+      }).appendTo($(this));
+    });
+    setPosters();
+  }
+  
   $( document ).tooltip({
     items: "[data-tooltip]",
     content: function() {
@@ -49,12 +55,34 @@ $(document).ready(function() {
     }
   });
   
+  var geoTimeout = false;
   function getLocation() {
   
-    navigator.geolocation.getCurrentPosition(function(position) {
-      setDistances(position.coords.latitude, position.coords.longitude);
-    });
+    if( navigator.geolocation ) {
+      if ( geoTimeout ) clearTimeout(geoTimeout);
+      geoTimeout = setTimeout(function () {
+        geoFail('timeout');
+      }, 10000);
+      
+      navigator.geolocation.getCurrentPosition(function(position) {
+        if ( geoTimeout ) clearTimeout(geoTimeout);
+        setDistances(position.coords.latitude, position.coords.longitude);
+      }, geoFail);
+      
+    }
+    else {
+      geoFail('not supported');
+    }
     
+  }
+  function geoFail(error) {
+    if ( geoTimeout ) clearTimeout(geoTimeout);
+    $('#nearby-search').addClass('hidden');
+    
+    if ( $('#nearby-notice').hasClass('hidden') ) {
+      console.log('geoFail: ' + error);
+      $('#nearby-fail').removeClass('hidden');
+    }
   }
   getLocation();
   
@@ -77,13 +105,37 @@ $(document).ready(function() {
   }
   
   function setDistances( lat, lng ) {
-  
+    var closest = { distance: 100000, location: '', slug: '' };
     $('.distance[data-lng][data-lat]').each(function() {
       var distance = getDistanceFromLatLonInKm(lat,lng,$(this).attr('data-lat'),$(this).attr('data-lng'));
       $(this).closest('section').attr('data-distance', distance);
       $(this).find('span').text( (Math.round( distance * 10) / 10) + ' km' );
       $(this).removeClass('hidden');
+      
+      if ( distance < closest.distance ) {
+        closest.distance = distance;
+        closest.location = $(this).closest('.tab').attr('data-location');
+        closest.slug = $(this).closest('.tab').attr('id');
+      }
     });
+    
+    if ( closest.distance < 10 ) {
+      $('#nearby-search').addClass('hidden');
+      $('#nearby-fail').addClass('hidden');
+      $('#nearby-notice span').text(closest.location);
+      $('#nearby-notice a').attr('href','#'+closest.slug);
+      $('#nearby-notice').removeClass('hidden').click(function() { processHash( '#'+closest.slug ); });
+      
+      $('nav i:not(.near)').removeClass('hidden').addClass('visible-xs');
+      $('nav a[href="#' + closest.slug + '"] i:not(.near)').removeClass('visible-xs').addClass('hidden');
+      $('nav .near').addClass('hidden');
+      $('nav a[href="#' + closest.slug + '"] .near').removeClass('hidden');
+      
+      $('.tab#'+closest.slug+' .nearby-sort').removeClass('hidden').find('input').change( function() {
+        var sortBy = $(this).closest('.nearby-sort').find('input:checked').val();
+        sortPlaces( $(this).closest('.tab').find('.sections'), sortBy );
+      });
+    }
     
     $('.hidden[data-sort="distance"]').removeClass('hidden');
     
@@ -108,7 +160,7 @@ $(document).ready(function() {
   }
   
   function processHash( hash ) {
-  
+    location.hash = hash;
     var tab = hash;
     var anchor = false;
     if ( hash.indexOf('/') > 0 ) {
@@ -123,7 +175,7 @@ $(document).ready(function() {
       $('html, body').scrollTop( $("#"+anchor).offset().top - 60 );
       
     }
-    
+    else $('html, body').scrollTop(0);
     
     loadLazies(tab);
     
@@ -136,16 +188,19 @@ $(document).ready(function() {
   function loadLazies( a ) {
     $(a + ' img.lazy').each( function() {
       var img = $(this).attr('data-original');
-      if (img.indexOf('googleusercontent') >= 0) img = 'http://images.weserv.nl/?url=' + img.replace('http://','').replace('https://','');
+      if (img.indexOf('googleusercontent') >= 0) img = '//images.weserv.nl/?url=' + img.replace('http://','').replace('https://','');
       $(this).attr('src', img).removeClass('lazy');
     });
     $(a + ' .lazy-background').each( function() {
       var img = $(this).attr('data-original');
-      if (img.indexOf('googleusercontent') >= 0) img = 'http://images.weserv.nl/?url=' + img.replace('http://','').replace('https://','');
+      if (img.indexOf('googleusercontent') >= 0) img = '//images.weserv.nl/?url=' + img.replace('http://','').replace('https://','');
       $(this).css('background-image', 'url('+img+')').removeClass('lazy-background');
     });
     
     setPosters();
+    setTimeout(function(){
+      setPosters();
+    }, 1000);
   }
   
   if (location.hash.length > 1 ) {

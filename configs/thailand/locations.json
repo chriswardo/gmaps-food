@@ -1,0 +1,29 @@
+[
+  {
+    "group": "Bangkok",
+    "name": "Bangkok",
+    "short": "Bangkok",
+    "slug": "bangkok",
+    "description": "The capital.",
+    "image": "",
+    "nav": true
+  },
+  {
+    "group": "Chiang Mai",
+    "name": "Chiang Mai",
+    "short": "Chiang Mai",
+    "slug": "chiang-mai",
+    "description": "City in the north",
+    "image": "",
+    "nav": true
+  },
+  {
+    "group": "Other",
+    "name": "The rest of Thailand",
+    "short": "Other",
+    "slug": "other",
+    "description": "Misc.",
+    "image": "",
+    "nav": true
+  }
+]

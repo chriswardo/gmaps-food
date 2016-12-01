@@ -1,0 +1,40 @@
+[
+  {
+    "name": "Nasi Kandar",
+    "description": "An Indian-style dish invented in Penang. It's basically a plate of rice (plain white or biryani) with a mixture of curry sauces, meat, fish and vegetables from a selection of trays. Ask for \"sauce banjir\" to have your plate flooded (\"banjir\" means flood) with different curry sauces. It's an assault on the taste buds in a very good way!",
+    "price": "RM4 - RM10",
+    "image": "https://lh4.googleusercontent.com/proxy/X9Lz7GJpto3TnkB4GeaxTLOkhWb47vpiQY6feEgpjo-hnfFHTisYu9UwMY2Z6GFgLAaAzSTwyhRUUy4U1MXCCuL2uPcShO2nW02brUlkdjO0FGy9ZChR31oSinVxnn8A0H4ZIeCGo9vn1Zi5jIvTjN6fSLnTMjYDWo9Q3vSgAFyt_fYT0wW3XYQBAyNy4T_GcxU56R3O_k0Yz2Gv3G03TJXh75Zc41C9x3StkcjQx0Z9tHEpk2W67ZDVRCMcru6TrUqy6a9YiSP-dH0uvcu2VpZRfoQVnehPRFbuOhnTDfeexjSNG7iQ5817QTeWEbnVdVKO9AnJaOXUWRs9i0HtKpXaD1RS-zB4D-3djcVHdkUBC2VW2gRfazeR7P6MBtx8i8IunZXbImMGK7WUMqM8P6nLRjsnqKTmHgFgmrMIb-KSh8bMDsuWzxqGQIK-1198k2wv2Qk6DxvkCq44KIqV53IOE3iy2s2tqSyjdNMxqfIz_1XsA1Yn43osH1-Lz_AKGZKxx6ca8W7FTgFydiXrNmmTG_QKqCAxBC_fBroyIAzznoTBBFDKeM0vVwNoiwwVT7L455TtCdPHOiA1jt9br_QM8TiBhYsCcA-_8627ipFTJ-js9ljE4SHX-BsaMKwuPxgYbRNGDngf1Y0GfOHkno_amq-dI_vjEuoT0gcqY-qalmQxfSx5XitKi-jHGu9VAvXl3GPXkvOCjWe2M5cZwQjEMMBXIN0ukGblqAZ6NXcyURpw-6FX9FkItrfrd3tRLWRNHYgWgl4N8ZRtKmQSCWwF7z27T6GU6yo1wFf41oHXQ_OOOETzGtquPIYcvN7-"
+  },
+  {
+    "name": "Roti Canai",
+    "description": "An amazing snack. Roti just means bread but roti canai refers to the simple dish of Indian style fried flat bread which is served with some curry sauce. It's so cheap and utterly delicious.",
+    "price": "RM1 - RM4 (without meat)",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Roticanai_bukittinggi.jpg"
+  },
+  {
+    "name": "Cendol",
+    "description": "A soup dessert made from coconut milk, shaved ice, palm sugar, red beans and green flour noodles (called cendol, which is where the dish gets its name). So refreshing on a hot day (which is every day in most of Malaysia). You can get it in a bowl, cup or bag - but I recommend having it at the stall in a bowl with a spoon for the best experience.",
+    "price": "RM2 - RM4",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Cendol_Penang.JPG"
+  },
+  {
+    "name": "Banana Leaf rice",
+    "search": [ "Banana leaf" ],
+    "description": "Pretty similar to nasi kandar but served on a banana leaf 'plate'. You should use your right hand to eat and then it's customary to fold the top half of the leaf (furthest from you) towards you after you've finished as a sign that you enjoyed the meal.",
+    "price": "RM5 - RM10",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Bananaleafrice001.jpg"
+  },
+  {
+    "name": "Char Koay Teow",
+    "search": [ "Char Koay Teow", "Char kway teow", "Char Kway Tiao", "Char Kuey Teow" ],
+    "description": "Probably the most famous noodle dish in Malaysia, which is why it's sometimes compared to Pad Thai.",
+    "price": "RM5 - RM10",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/0/04/Char_kway_teow.jpg"
+  },
+  {
+    "name": "Durian",
+    "description": "Not really a dish but it deserves a place here.",
+    "price": "RM10 - RM20",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/D101_and_random_stock.jpg/1024px-D101_and_random_stock.jpg"
+  }
+]

@@ -1,0 +1,196 @@
+[
+  {
+    "name": "Bún Thịt Nướng",
+    "search": [ "Bún Thịt Nướng", "Bún khô" ],
+    "description": "An amazing dish of cold vermicelli rice noodles topped with various meats and usually chopped fried spring roll. I usually ask for everything. Served with a fish sauce with chilli which you usually have to mix yourself in a little dish, pour over the noodles and mix it all up. Salad is either provided separately or it comes in the dish already. Probably my favourite dish in Vietnam. Said \"Boon(g) tit noong\". My favourite selection is nem (grilled pork) and chả giò (fried spring roll). The classic version has those 2 as standard but also with another type of pork which is like cut up unsalted bacon but I usually find it quite boring and would rather have extra nem.",
+    "price": "25,000 - 45,000d",
+    "image": "https://images.contentful.com/lo30fpaxmzc7/5DFmbXIG64gwm4qEEg4iyo/6b33e778cb103b7f5347527845bc164d/5-Bun-Thit-Nuong-Awesome-Foods-of-Vietnam-Asia-wikipedia.jpg"
+  },
+  {
+    "name": "Bò Né",
+    "description": "Beef steak (and maybe other meats including meatball, pate and sausage) with egg and veg, all sizzling on a plate. 'Né' roughly means \"stand back\" due to the sizzling/spitting from the hot plate. Served with tomato/chilli sauce and baguette. Really delicious, possibly my second favourite main meal. I was told in the Central Highlands that it's typically a breakfast but in Saigon it seemed to be most popular for dinner. I initially had trouble finding this but it's worth seeking out (the Foody.vn app is useful for things like this). My favourite is to order off-menu and ask for \"2 trứng, bò, pa tê, nem\" (2 eggs, beef, paté, grilled pork).",
+    "price": "25,000 - 35,000d",
+    "image": "https://images.contentful.com/lo30fpaxmzc7/GGo0jy2QUKyMg2aQKiuGm/eebe123608d19df5b26340379d300227/bo_ne.jpg"
+  },
+  {
+    "name": "Tàu Hủ (đá)",
+    "search": [ "Tàu Hũ", "Tàu Hủ", "Dau Hu", "Tàu Hũ đá", "đậu hũ đá" ],
+    "description": "Sweet tofu dessert. The name of it varies (tàu hủ nước đường, tàu hủ hoa or tào phớ, đậu hủ, tàu hủ), as does the way it's served but it's sweet tofu served either warm or with ice. It's quite regularly served with ginger. Usually found on the side of the street in little carts. Either served in a small bowl or a plastic cup.",
+    "price": "5,000 - 10,000d",
+    "image": "https://images.contentful.com/lo30fpaxmzc7/4EcQR5psmIIaIQageuuIiU/8455c0bcf58400fbb7a1ee88806e0277/JMuZP1M.jpg"
+  },
+  {
+    "name": "Bánh mì",
+    "search": [ "Bánh mì", "bánh mỳ", "banh mi" ],
+    "search_exclude": [ "Bánh mì ốp la" ],
+    "description": "Bagettes with various fillings (usually pate, salad, coriander and multiple meats or fish). I like to have it with 'everything' (including a freshly fried egg). Bánh mì thịt nướng (with grilled meat) is probably my favourite. In Hanoi they usually spell it \"bánh mỳ\". Said \"bun me\". They're everywhere across Vietnam and usually sold from little metal food trailers on the side of the road.",
+    "price": "10,000 - 20,000d",
+    "image": "https://images.contentful.com/lo30fpaxmzc7/1cJVpDQAcY6ASKYY22iGSq/a7c8b5f322fc0d82cb9ce813ab190363/9dEC7xe.jpg"
+  },
+  {
+    "name": "Chả Cá",
+    "search_exclude": [ "Bánh mì Chả Cá" ],
+    "description": "A northern Vietnamese dish of fish cooked in turmeric and dill, served with veg and noodles. When I had it, they cooked the fish, dill and spring onions on the table in front of me, then I had to put together the meal, one small bowl at a time. First the cold vermicelli rice noodles, then some strands of spring/green onion, coriander & Thai basil, peanuts, then a chunk of the fish and cooked veg and topped with some fish sauce which had added chilli to suit your taste. Mix it all up, like you do with a lot of Vietnamese food. If, like me, you're a fan of fish with dill, you need to try this dish. It's definitely one of my highlights of Vietnam. Relatively expensive though.",
+    "price": "120,000d",
+    "image": "https://images.contentful.com/lo30fpaxmzc7/3SH7lboOVW62Qq24Uem6KW/9b810b1ee759c69e28a46c5ae9c4be98/7SNCBD0.jpg"
+  },
+  {
+    "name": "Phở",
+    "search_exclude": [ "Phở chua" ],
+    "description": "The most famous Vietnamese dish. Beef noodle soup. It's difficult to say correctly because it's so much about the intonation. It's kind of like saying 'fur' but elongated ('fuuurrr'). Very tasty.",
+    "price": "30,000 - 50,000d",
+    "how": [ "After learning from my Vietnamese friends and watching people eat Phở, I hopefully have a good idea of how most people eat it. It's worth tasting the broth first and remember that all the garnishes depend on your personal taste - there's no right or wrong way.",
+             "Tear up a selection of the leaves provided and add them to the soup, along with some fresh chilli, a squeeze of lime, some Sriracha (red chilli sauce) and hoisin. Note that not everyone adds the Sriracha and hoisin (some don't add lime either) but it seems like most do. Some people add fish sauce too, but it's rarer. If you're not sure, start without any additional sauces and add some later to see what you prefer. Beware that by the end of the soup, the flavours will have intensified, especially from however much chilli you added.",
+             "Grab one of the small dishes and add half Sriracha, half hoisin, possibly with a squeeze of lime - mix them together and use it as a dip for the beef.",
+             "Use the chopsticks and soup spoon to mix up the soup, then eat the noodles using the chopsticks and chase each mouth of noodles with a slurp of the broth." ],
+    "history": "Phở is originally from the north of Vietnam and the name actually refers to the type of noodles used.",
+    "image": "https://images.contentful.com/lo30fpaxmzc7/51Bj4rI7FuOKiaGkyMqg0k/f7cfbc5760785af822819999c73723d8/IMG_3355.JPG"
+  },
+  {
+    "name": "Bánh xèo",
+    "description": "Pancake usually with a mixture of meat and seafood. Usually cut up and wrapped in lettuce leaves before being dipped in a chilli sauce, although the method of eating apparently changes depending on the region. Roughly said \"bun sayo\" in the south and \"bang see-ow\" (rhymes with 'how') in the north.",
+    "price": "10,000 - 40,000d",
+    "image": "https://images.contentful.com/lo30fpaxmzc7/5t9MSyjre82AICkwOycSIW/be1a0957bd011373445c65338ba671e9/IMG_3421.JPG"
+  },
+  {
+    "name": "Cơm tấm",
+    "description": "'Broken rice' gets its name from the fact the rice didn't meet the standards for exporting (usually because the grains were too small, that's all). Traditionally it was served as a cheap meal along with various meat or fish. Even though the name of the dish just refers to the rice part, it's the accompanying meat which makes or breaks it. It seems like grilled pork is the most popular option.",
+    "price": "",
+    "tip": "Tip from my Vietnamese friend: \"We just only use a special sauce (a kind of fish sauce) for Cơm tấm, but if you like hot, you can put a little chilli on it.\"",
+    "image": "https://images.contentful.com/lo30fpaxmzc7/3Z3wNusehyI4CK80yy8SI8/4136b7d98d9e1b837825ca2db6448d78/632Be15.jpg"
+  },
+  {
+    "name": "Bánh giò",
+    "description": "Rice dumpling filled with seasoned meat. I've only had it once (so far) but it was seriously good.",
+    "price": "",
+    "image": ""
+  },
+  {
+    "name": "Phở chua",
+    "description": "A northern sour (chua) version of Phở without the soup. It's a great and really different to the standard Phở but I didn't see it much.",
+    "price": "",
+    "image": "https://images.contentful.com/lo30fpaxmzc7/2a9Ako4x4YMsYqkWsYCMGs/9233893e56469c4a9e07429a6b9a5b3a/IMG_3520.JPG"
+  },
+  {
+    "name": "Bún bò Huế",
+    "description": "Similar to Phở but from the Huế region. Said \"Boon bo hway\".",
+    "price": "",
+    "image": ""
+  },
+  {
+    "name": "Bún riêu",
+    "description": "Crab and tomato soup. Usually with a mix of various other miscellaneous items.",
+    "price": "",
+    "image": ""
+  },
+  {
+    "name": "Bún Chả",
+    "description": "A dish from Hanoi of noodles with grilled pork patties and a tasty sauce.",
+    "price": "",
+    "image": ""
+  },
+  {
+    "name": "Bún Đậu",
+    "description": "Street food from the north but now popular in Saigon too. Rice noodles are pressed, cut in to cubes and served with tofu and a selection of meats. It comes with a shrimp paste dipping sauce that many people will really dislike. It was an interesting meal but definitely not something I loved.",
+    "price": "",
+    "image": "https://images.contentful.com/lo30fpaxmzc7/1puZwZoJHGMeAAwo4iuYqG/52209a12dfb495b264ddf7e855811599/z5dgrqf.jpg"
+  },
+  {
+    "name": "Bánh mì ốp la",
+    "description": "Amazing breakfast of bread, eggs and meat.",
+    "price": "30,000 - 40,000d",
+    "image": "https://images.contentful.com/lo30fpaxmzc7/4UMh3kDmmsqEOwEU4KC2Sm/c49d8e46a75731626eb6d2c78b20f37d/rXaUpm4.jpg"
+  },
+  {
+    "name": "Bún bò Nam Bộ",
+    "description": "Delicious noodle dish originally from the south.",
+    "price": "30,000 - 60,000d",
+    "tips": [],
+    "image": "https://images.contentful.com/lo30fpaxmzc7/6H6CFu5h4cQmsakC0wmo2G/2132d15936446bc30b818023d155138d/w8VK4tL.jpg"
+  },
+  {
+    "name": "Bánh flan",
+    "search": [ "Bánh flan", "kem flan", "kem caramen", "creme caramel", "crème caramel" ],
+    "description": "Crème caramel, served all over Vietnam but with various names (bánh flan, kem flan & kem caramen). The best I had was around Ba Vì National Park. It's also possible to have it mixed with coffee as a dessert drink which was amazing.",
+    "price": "5,000d",
+    "tips": [],
+    "image": "https://images.contentful.com/lo30fpaxmzc7/2BxgGHGtUUQGQs8ok6YwMU/5bb8b970725f0ef0de9aeb2b3b50abe6/AQ3wnat.jpg"
+  },
+  {
+    "name": "",
+    "description": "",
+    "price": "",
+    "tips": [],
+    "image": ""
+  },
+  {
+    "name": "",
+    "description": "",
+    "price": "",
+    "tips": [],
+    "image": ""
+  },
+  {
+    "name": "",
+    "description": "",
+    "price": "",
+    "tips": [],
+    "image": ""
+  },
+  {
+    "name": "",
+    "description": "",
+    "price": "",
+    "tips": [],
+    "image": ""
+  },
+  {
+    "name": "",
+    "description": "",
+    "price": "",
+    "tips": [],
+    "image": ""
+  },
+  {
+    "name": "",
+    "description": "",
+    "price": "",
+    "tips": [],
+    "image": ""
+  },
+  {
+    "name": "",
+    "description": "",
+    "price": "",
+    "tips": [],
+    "image": ""
+  },
+  {
+    "name": "",
+    "description": "",
+    "price": "",
+    "tips": [],
+    "image": ""
+  },
+  {
+    "name": "",
+    "description": "",
+    "price": "",
+    "tips": [],
+    "image": ""
+  },
+  {
+    "name": "",
+    "description": "",
+    "price": "",
+    "tips": [],
+    "image": ""
+  },
+  {
+    "name": "",
+    "description": "",
+    "price": "",
+    "tips": [],
+    "image": ""
+  }
+]

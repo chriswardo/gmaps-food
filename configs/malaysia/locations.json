@@ -1,0 +1,38 @@
+[
+  {
+    "group": "Kuala Lumpur",
+    "name": "Kuala Lumpur",
+    "short": "Kuala Lumpur",
+    "slug": "kuala-lumpur",
+    "description": "The capital.",
+    "image": "",
+    "nav": true
+  },
+  {
+    "group": [ "Pulau Pinang", "Penang" ],
+    "name": "Penang",
+    "short": "Penang",
+    "slug": "penang",
+    "description": "The food island",
+    "image": "",
+    "nav": true
+  },
+  {
+    "group": "Melaka",
+    "name": "Melaka / Malacca",
+    "short": "Melaka",
+    "slug": "melaka",
+    "description": "Nyonya food",
+    "image": "",
+    "nav": true
+  },
+  {
+    "group": "Other",
+    "name": "Other",
+    "short": "Other",
+    "slug": "other",
+    "description": "Misc.",
+    "image": "",
+    "nav": true
+  }
+]

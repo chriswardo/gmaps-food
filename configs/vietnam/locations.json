@@ -1,0 +1,83 @@
+[
+  {
+    "group": "Hà Nội",
+    "name": "Hanoi",
+    "short": "Hanoi",
+    "slug": "hanoi",
+    "description": "There's plenty of amazing food in the capital; some of it specific to the north and even just Hanoi.",
+    "image": "",
+    "nav": true
+  },
+  {
+    "group": "Hồ Chí Minh",
+    "name": "Saigon / Ho Chi Minh City",
+    "short": "Saigon",
+    "slug": "saigon",
+    "description": "It's by far the biggest city in Vietnam and with that comes the best selection of food. It's food heaven!",
+    "image": "",
+    "nav": true
+  },
+  {
+    "group": "tp. Hội An",
+    "name": "Hoi An",
+    "short": "Hoi An",
+    "slug": "hoi-an",
+    "description": "This beautiful town has a few famous dishes but overall I found that most places were tourist traps and it was hard to find good authentic local food.",
+    "image": "",
+    "nav": true
+  },
+  {
+    "group": "Phú Yên",
+    "name": "Phu Yen Province",
+    "short": "Phu Yen",
+    "slug": "phu-yen",
+    "description": "When there are zero tourists, it's easily to find authentic local food.",
+    "image": "",
+    "nav": true
+  },
+  {
+    "group": "tp. Huế",
+    "name": "Huế",
+    "short": "Huế",
+    "slug": "hue",
+    "description": "The Imperial City is famous for its food, with many restaurants around the country dedicating themselves to Huế cuisine. However, I found it to be a bit of a let down. It's very possible that amazing food exists but it's just harder to find. Most options were for tourists and relatively unexciting.",
+    "image": "",
+    "nav": true
+  },
+  {
+    "group": "tp. Buôn Ma Thuột",
+    "name": "Buôn Ma Thuột",
+    "short": "Buôn Ma Thuột",
+    "slug": "buon-ma-thuot",
+    "description": "Capital of the Central Highlands.",
+    "image": "",
+    "nav": false
+  },
+  {
+    "group": "Lâm Đồng",
+    "name": "Đà Lạt",
+    "short": "Đà Lạt",
+    "slug": "da-lat",
+    "description": "Known for its food produce but not necessarily its cooking, the town is a tourist hotspot for foreigners and Vietnamese alike.",
+    "image": "",
+    "nav": false
+  },
+  {
+    "group": "tp. Phú Quốc",
+    "name": "Phú Quốc",
+    "short": "Phú Quốc",
+    "slug": "phu-quoc",
+    "description": "The big island in the south has lots of resorts but there are some local areas too.",
+    "image": "",
+    "nav": false
+  },
+  {
+    "group": "Other",
+    "name": "The rest of Vietnam",
+    "short": "Other",
+    "slug": "other",
+    "description": "The rest of Vietnam.",
+    "image": "",
+    "nav": true
+  }
+]

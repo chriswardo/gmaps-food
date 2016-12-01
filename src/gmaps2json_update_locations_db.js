@@ -1,13 +1,15 @@
+"use strict";
 var Promise = require('promise');
 var exec = require('promised-exec');
 var path = require('path');
 var fs = require('fs');
+var exec_promise;
 
 const LOCATIONS_DB = path.resolve( "./db/locations_db.json" ); // lat,lng => location data
 const PLACE_ID_DB = path.resolve( "./db/place_id_db.json" ); // lat,lng => place_id
 const PLACE_DETAILS_DB = path.resolve( "./db/place_details_db.json" ); // place_id => place data
 
-const CONFIG_FILE = path.resolve( "./config.json" );
+const CONFIG_FILE = path.resolve( "./configs/config.json" );
 
 var cfg = require(CONFIG_FILE); //app config
 

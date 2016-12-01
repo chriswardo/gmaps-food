@@ -1,18 +1,18 @@
-
-if ( process.argv.length < 3 ) {
-  process.stderr.write( "Usage: " + process.argv[0] + " " + process.argv[1] + " [FOLDER]\n" );
+"use strict";
+let folder;
+if (process.argv.length < 3) {
+  process.stderr.write("Usage: " + process.argv[0] + " " + process.argv[1] + " [FOLDER]\n");
   process.exit(1);
+} else {
+  folder = process.argv[2];
 }
-else {
-  var folder = process.argv[2];
-}
 
-process.stderr.write( "Processing JSON...\n" );
+process.stderr.write("Processing JSON...\n");
 
 
-var dishes = require('../maps/' + folder + '/dishes.json');
-var defaultDiacriticsRemovalap = require('../diacritics.json');
-const LOCATION_GROUPS = require('../maps/' + folder + '/locations.json');
+const dishes = require('../configs/' + folder + '/dishes.json');
+const defaultDiacriticsRemovalap = require('./diacritics.json');
+const LOCATION_GROUPS = require('../configs/' + folder + '/locations.json');
 
 
 
@@ -99,8 +99,8 @@ function formatHours( hours ) {
     var regexp = /^(.+)\:\s+(.+)$/gi;
     var m = regexp.exec(hour);
     if (m) {
-      day = m[1].substr(0,3);
-      time = m[2].replace(/ PM/g, 'PM').replace(/ AM/g, 'AM').replace(/:00/g,'');
+      var day = m[1].substr(0,3);
+      var time = m[2].replace(/ PM/g, 'PM').replace(/ AM/g, 'AM').replace(/:00/g,'');
       daily.push( { day: day, time: time } );
     }
   });
@@ -158,7 +158,7 @@ function processPlaces() {
     
     images.forEach( function(img) {
     
-      img = img.replace('https://','http://');
+      img = img.replace('https://','//').replace('http://','//');
       if ( img.indexOf('imgur.com') >= 0 ) {
         places[i].images.push( { thumb: img.replace('.jpg', 's.jpg', 'i'), medium: img.replace('.jpg', 'l.jpg', 'i'), large: img } );
       }
@@ -341,6 +341,11 @@ function processPlaces() {
           else if ( m[1].toLowerCase() == "note" ) desc_lines.push( '<p><i class="material-icons">speaker_notes</i> ' + line + '</p>' );
           else if ( m[1].toLowerCase() == "tip" ) desc_lines.push( '<p><i class="material-icons">lightbulb_outline</i> ' + line + '</p>' );
           else if ( m[1].toLowerCase() == "last visit" || m[1].toLowerCase() == "last visited" ) places[i].last_visit = [ m[2] ];
+          else if ( m[1].toLowerCase() == "rating" || m[1].toLowerCase() == "score" ) {
+            var regscore = /^\s*([0-9\.]+)\s*\/\s*([0-9]+)\s*$/gi;
+            var score = regscore.exec(m[2]);
+            if (score) places[i].rating = parseInt(parseFloat(score[1])/parseFloat(score[2])*10);
+          }
           else desc_lines.push( "<p>" + line + "</p>" );
         }
 			  else {
