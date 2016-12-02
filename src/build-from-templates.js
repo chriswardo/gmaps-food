@@ -41,7 +41,7 @@ function linkDishTooltips(text, dish) {
   for ( var i = 0; i < search.length; i++ ) {
     if ( search[i].length > 2 && textWithoutExcludes.indexOf( search[i].toLowerCase() ) >= 0 ) {
       var desc = '<h2>' + dish.name + '</h2><p>' + dish.description + '</p>';
-      text = text.replace( new RegExp(search[i], 'gi'), '<span data-tooltip="' + desc.toHtmlEntities() + '">' + search[i] + '</span>' );
+      text = text.replace( new RegExp(search[i], 'i'), '<span data-tooltip="' + desc.toHtmlEntities() + '">' + search[i] + '</span>' );
       textWithoutExcludes = textWithoutExcludes.replace( new RegExp(search[i], 'gi'), '' );
     }
   }

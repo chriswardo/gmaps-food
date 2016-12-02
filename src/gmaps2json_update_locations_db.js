@@ -9,9 +9,6 @@ const LOCATIONS_DB = path.resolve( "./db/locations_db.json" ); // lat,lng => loc
 const PLACE_ID_DB = path.resolve( "./db/place_id_db.json" ); // lat,lng => place_id
 const PLACE_DETAILS_DB = path.resolve( "./db/place_details_db.json" ); // place_id => place data
 
-const CONFIG_FILE = path.resolve( "./configs/config.json" );
-
-var cfg = require(CONFIG_FILE); //app config
 
 if ( process.argv.length < 3 ) {
   process.stderr.write( "Usage: " + process.argv[0] + " " + process.argv[1] + " [FOLDER]\n" );
@@ -20,13 +17,13 @@ if ( process.argv.length < 3 ) {
 else {
   var folder = process.argv[2];
 }
-  
+
 
 const PLACES_DATA = path.resolve( "./maps/" + folder + "/basic.json" );
 const PLACES_DATA_COMBINED = path.resolve( "./maps/" + folder + "/combined.json" );
+const CONFIG_FILE = path.resolve( "./configs/" + folder + "/config.json" );
 
-
-
+var cfg = require(CONFIG_FILE); //app config
 var places = require(PLACES_DATA);
 var locations_db = require(LOCATIONS_DB);
 var place_id_db = require(PLACE_ID_DB);
@@ -82,18 +79,18 @@ function writeCombined() {
   // Add each piece of data from locations_db
   // If there's a place_id in place_id_db then add place_id and each piece of data from place_details_db
   places.forEach( function(place,i) {
-    
+
     for (var attrname in locations_db[place.lng + "," + place.lat]) { places[i][attrname] = locations_db[place.lng + "," + place.lat][attrname]; }
-    
+
     var place_id = place_id_db[place.lng + "," + place.lat].place_id;
     if ( place_id != undefined ) {
       places[i].place_id = place_id;
-      
+
       for (var attrname in place_details_db[place_id]) { places[i][attrname] = place_details_db[place_id][attrname]; }
-    
+
     }
   });
-  
+
 
   fs.writeFile(PLACES_DATA_COMBINED, JSON.stringify(places), function(err) {} );
   process.stderr.write( "\nSaved Combined DB.\n" );
@@ -115,12 +112,12 @@ function getLocationData( place ) {
       fulfill( locations_db[ lng + "," + lat ] ); // found in db
     }
     else {
-    
+
       //var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lng + "," + lat + "&radius=1&types=food&key=" + cfg.API_KEY + "&sensor=true";
       var url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lng + "," + lat + "&key=" + cfg.API_KEY + "&sensor=true";
-  
+
       var cmd = "curl --silent '" + url + "' | jq '. | { address: .results[0].address_components[1].long_name, city: .results[0].address_components[-3].long_name, region: .results[0].address_components[-2].long_name, country: .results[0].address_components[-1].long_name, countryCode: .results[0].address_components[-1].short_name, location: [.results[0].address_components[].long_name], status: .status }'";
-  
+
       exec_promise = exec(cmd);
       exec_promise.then(function (stdout) {
 
@@ -130,7 +127,7 @@ function getLocationData( place ) {
           if ( json.status == "OK" ) {
             process.stderr.write( '.' );
             data = json;
-          
+
             locations_db[ place.lng + "," + place.lat ] = data;
             fs.writeFile(LOCATIONS_DB, JSON.stringify(locations_db), function(err) { console.log("E"); } );
             fulfill(data);
@@ -143,8 +140,8 @@ function getLocationData( place ) {
         else {
           reject( "No output from exec: " + cmd );
         }
-          
-  
+
+
       },reject);
     }
   });
@@ -166,13 +163,13 @@ function runPlaceIDs() {
   try {
     getAllPlaceIDs( places ).done(function (results) {
       process.stderr.write( "Got place ids for " + (results.length - places.length) + " new places.\n" );
-  
+
 
       //Now that we have the place ids, we can get the place details...
       runPlaceDetails();
 
-  
-  
+
+
     }, function (err) {
         process.stderr.write( "ERROR" );
         //process.stderr.write( err );
@@ -192,7 +189,7 @@ function getAllPlaceIDs( places ) {
 
 function getPlaceID( place ) {
   return new Promise(function (fulfill, reject){
-    
+
     var lat = place.lat;
     var lng = place.lng;
     if ( (lng + "," + lat) in place_id_db ) {
@@ -201,16 +198,16 @@ function getPlaceID( place ) {
     }
     else {
       var namestart = place.name;
-		  place.name.replace( /^(.+)\s*\(([^\)]+)\)$/gi, function(all, a, b) { namestart = a; }.bind(this) );
-		  //process.stderr.write( 
+      place.name.replace( /^(.+)\s*\(([^\)]+)\)$/gi, function(all, a, b) { namestart = a; }.bind(this) );
+      //process.stderr.write(
 
       var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lng + "," + lat + "&key=" + cfg.API_KEY + "&sensor=true&rankby=distance&keyword=" + namestart.replace(/ /g,'+').replace(/\'/g,"%27");
 
       //var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lng + "," + lat + "&radius=2&types=food&key=" + cfg.API_KEY + "&sensor=true";
      // var url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lng + "," + lat + "&key=AIzaSyB9cSxcJcVGp3jmdN8VPj7itbk-n9FFnCA&sensor=true";
-  
+
       var cmd = "curl --silent '" + url + "' | jq '. | { place_id: .results[0].place_id, name: .results[0].name, status }'";
-  
+
       //process.stderr.write( "\n" + cmd + "\n" );
       try {
         exec_promise = exec(cmd);
@@ -223,7 +220,7 @@ function getPlaceID( place ) {
               //process.stderr.write( "" + place.name + " => " + json.name + "\n" );
               process.stderr.write( '.' );
               data = json;
-          
+
               place_id_db[ place.lng + "," + place.lat ] = data;
               fs.writeFile(PLACE_ID_DB, JSON.stringify(place_id_db), function(err) {} );
               fulfill(data);
@@ -244,11 +241,11 @@ function getPlaceID( place ) {
             //process.stderr.write( cmd );
             reject( "No output from exec: " + cmd );
           }
-  
+
         },reject);
       }
       catch ( e ) {
-        
+
         process.stderr.write( "Exception with exec" );
         console.log(e);
       }
@@ -281,7 +278,7 @@ function getAllPlaceDetails( places ) {
 
 function getPlaceDetails( place ) {
   return new Promise(function (fulfill, reject){
-  
+
     var place_id = place_id_db[ place.lng + "," + place.lat ].place_id;
     if ( place_id == undefined ) {
       //process.stderr.write( 'X' );
@@ -292,11 +289,11 @@ function getPlaceDetails( place ) {
       fulfill( place_details_db[ place_id ] ); // found in db
     }
     else {
-    
+
       var url = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + place_id + "&key=" + cfg.API_KEY + "&sensor=true";
-  
+
       var cmd = "curl --silent '" + url + "' | jq '. | { place_name: .result.name, address: .result.vicinity, phone: .result.formatted_phone_number, website: .result.website, types: .result.types, status, hours: .result.opening_hours.weekday_text }'";
-  
+
       exec_promise = exec(cmd);
       exec_promise.then(function (stdout) {
 
@@ -306,7 +303,7 @@ function getPlaceDetails( place ) {
           if ( json.status == "OK" ) {
             process.stderr.write( '.' );
             data = json;
-          
+
             place_details_db[ place_id ] = data;
             fs.writeFile(PLACE_DETAILS_DB, JSON.stringify(place_details_db), function(err) {} );
             fulfill(data);
@@ -325,7 +322,7 @@ function getPlaceDetails( place ) {
         else {
           reject( "No output from exec: " + cmd );
         }
-  
+
       },reject);
     }
   });

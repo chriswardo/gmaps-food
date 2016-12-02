@@ -325,7 +325,7 @@
                             <li><i class="material-icons red">place</i> <a href="https://www.google.com/maps/place/{{ place.lng }},{{ place.lat }}">{{ place.address }}</a></li>
                             <li data-lat="{{ place.lng }}" data-lng="{{ place.lat }}" class="distance hidden"><i class="material-icons">near_me</i> <span></span></li>
                             {% if place.phone %}<li><i class="material-icons">phone</i> {{ place.phone }}</li>{% endif %}
-                            {% for hour in place.hours %}<li data-day="{{ hour.day|lower|substr(0,3) }}">{% if loop.first %}<i class="material-icons">access_time</i> {% endif %}<strong>{{ hour.day }}</strong>: {{ hour.time }}</li>{% endfor %}
+                            {% for hour in place.hours %}<li data-day="{{ hour.day|lower|substr(0,3) }}">{% if loop.first %}<i class="material-icons">access_time</i> {% endif %}{% if hour.day %}<strong>{{ hour.day }}</strong>: {% endif %}{{ hour.time }}</li>{% endfor %}
                             {% if place.last_visit %}<li><i class="material-icons">event</i> Last Visit: {{ place.last_visit }}</li>{% endif %}
                           </ul>
                         </div>

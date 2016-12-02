@@ -4,7 +4,7 @@ if (process.argv.length < 3) {
   process.stderr.write("Usage: " + process.argv[0] + " " + process.argv[1] + " [FOLDER]\n");
   process.exit(1);
 } else {
-  folder = process.argv[2];
+  folder = process.argv[2].toLowerCase();
 }
 
 process.stderr.write("Processing JSON...\n");
@@ -93,7 +93,26 @@ function getLocationSlug( location_name ) {
   return slug;
 }
 
-function formatHours( hours ) {
+function formatHoursFromString( hours ) {
+  hours = hours.split(",").map(function(e){return e.trim();});
+  
+  var daily = [];
+  hours.forEach( function( hour ) {
+    var regexp = /^([^\:]+)\:\s+(.+)$/gi;
+    var m = regexp.exec(hour);
+    if (m) {
+      var day = m[1];
+      var time = m[2].replace(/\s*PM/gi, 'PM').replace(/\s*AM/gi, 'AM').replace(/:00/g,'');
+      daily.push( { day: day, time: time } );
+    }
+    else {
+      daily.push({ time: hour.replace(/\s*PM/gi, 'PM').replace(/\s*AM/gi, 'AM').replace(/:00/g,'') });
+    }
+  });
+  return daily;
+}
+
+function formatHoursFromGoogle( hours ) {
   var daily = [];
   hours.forEach( function( hour ) {
     var regexp = /^(.+)\:\s+(.+)$/gi;
@@ -128,6 +147,19 @@ function formatHours( hours ) {
   
   return daily_groups;
 
+}
+
+function formatAddress( address ) {
+  
+  address = address.replace(/,,/g, ",").replace(/, ,/g, ",");
+  
+  if ( folder == "vietnam" ) {
+    // TODO: Hem
+    
+  }
+  
+  return address;
+  
 }
 
 
@@ -196,7 +228,7 @@ function processPlaces() {
     // TODO: check this website against the other websites from the description. Maybe compare domains?
     if ( places[i].website ) places[i].links.push( { title: 'Website', url: places[i].website, icon: 'open_in_new' } );
 		
-  	places[i].links.push( { title: 'Google Maps', url: 'https://www.google.com/maps/place/' + places[i].lng + ',' + places[i].lat, icon: 'map' } );
+  	places[i].links.push( { title: 'Map', url: 'https://www.google.com/maps/place/' + places[i].lng + ',' + places[i].lat, icon: 'map' } );
 		
 		
 		places[i].favourite = places[i].visited && ( places[i].description.toLowerCase().replace('recommended by','').replace('recommended from','').replace('recommended if','').replace('recommended dish','').replace("chef's recommendation","").indexOf('recommended') >= 0 );
@@ -276,7 +308,8 @@ function processPlaces() {
 		  places[i].icon = "place";
 		}
 		
-		if ( places[i].hours ) places[i].hours = formatHours( places[i].hours );
+		if ( places[i].hours ) places[i].hours = formatHoursFromGoogle( places[i].hours );
+    if (places[i].address) places[i].address = formatAddress( places[i].address );
 		
 		var desc_lines = [];
 		//var images = [];
@@ -335,11 +368,11 @@ function processPlaces() {
 			}
 			else if ( line.length > 0 ) {
 			  //Get address
-			  var regexp = /^(.+)\:\s+(.+)$/gi;
+			  var regexp = /^([^\:]+)\:\s+(.+)$/gi;
         var m = regexp.exec(line);
         if (m) {
           if ( m[1].toLowerCase() == "address" ) places[i].address = m[2];
-          else if ( m[1].toLowerCase() == "hours" || m[1].toLowerCase() == "open" ) places[i].hours = [ m[2] ];
+          else if ( m[1].toLowerCase() == "hours" || m[1].toLowerCase() == "open" ) places[i].hours = formatHoursFromString( m[2] );
           else if ( m[1].toLowerCase() == "update" ) desc_lines.push( '<p><i class="material-icons">new_releases</i> ' + line + '</p>' );
           else if ( m[1].toLowerCase() == "note" ) desc_lines.push( '<p><i class="material-icons">speaker_notes</i> ' + line + '</p>' );
           else if ( m[1].toLowerCase() == "tip" ) desc_lines.push( '<p><i class="material-icons">lightbulb_outline</i> ' + line + '</p>' );
