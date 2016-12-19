@@ -2,12 +2,19 @@
   {
     "name": "Nasi Kandar",
     "description": "An Indian-style dish invented in Penang. It's basically a plate of rice (plain white or biryani) with a mixture of curry sauces, meat, fish and vegetables from a selection of trays. Ask for \"sauce banjir\" to have your plate flooded (\"banjir\" means flood) with different curry sauces. It's an assault on the taste buds in a very good way!",
-    "price": "RM4 - RM10",
+    "how": [
+      "First there might be a choice of different rice, but usually they just put a heap of fluffy white rice on your plate and await your instructions.",
+      "There will be a lot of dishes to choose from. It's worth finding out what the speciality of that vendor is, but non-meat favourites are: omelette (if not, they usually have whole boiled egg and sometimes half salted eggs), cabbage (which most people seem to add) and okra (also known as lady fingers). I usually get one or two meat/fish options: fried chicken (ayam goreng), black chicken, mutton curry or anything that seems to be popular.",
+      "Make sure you ask for \"sauce banjir\" (literally means to flood your rice with sauce), you can specify \"kuah campur\" (said like \"kuah champur\", it means mixed sauces) but that's usually implied when you say \"banjir\". This makes a bit difference.",
+      "It's normal to eat everything with your right hand, which I do too, but it's ok if you feel uncomfortable as most places will have cutlery.",
+      "Sometimes you pay before you eat but usually you're given a piece of paper with your order and you pay afterwards (having washed your hands at one of the sinks). Someone will come over and ask if you want a drink. I always order \"teh o ais kossong\" (iced tea with no milk or sugar)."
+    ],
+    "price": "RM4 - RM12",
     "image": "https://lh4.googleusercontent.com/proxy/X9Lz7GJpto3TnkB4GeaxTLOkhWb47vpiQY6feEgpjo-hnfFHTisYu9UwMY2Z6GFgLAaAzSTwyhRUUy4U1MXCCuL2uPcShO2nW02brUlkdjO0FGy9ZChR31oSinVxnn8A0H4ZIeCGo9vn1Zi5jIvTjN6fSLnTMjYDWo9Q3vSgAFyt_fYT0wW3XYQBAyNy4T_GcxU56R3O_k0Yz2Gv3G03TJXh75Zc41C9x3StkcjQx0Z9tHEpk2W67ZDVRCMcru6TrUqy6a9YiSP-dH0uvcu2VpZRfoQVnehPRFbuOhnTDfeexjSNG7iQ5817QTeWEbnVdVKO9AnJaOXUWRs9i0HtKpXaD1RS-zB4D-3djcVHdkUBC2VW2gRfazeR7P6MBtx8i8IunZXbImMGK7WUMqM8P6nLRjsnqKTmHgFgmrMIb-KSh8bMDsuWzxqGQIK-1198k2wv2Qk6DxvkCq44KIqV53IOE3iy2s2tqSyjdNMxqfIz_1XsA1Yn43osH1-Lz_AKGZKxx6ca8W7FTgFydiXrNmmTG_QKqCAxBC_fBroyIAzznoTBBFDKeM0vVwNoiwwVT7L455TtCdPHOiA1jt9br_QM8TiBhYsCcA-_8627ipFTJ-js9ljE4SHX-BsaMKwuPxgYbRNGDngf1Y0GfOHkno_amq-dI_vjEuoT0gcqY-qalmQxfSx5XitKi-jHGu9VAvXl3GPXkvOCjWe2M5cZwQjEMMBXIN0ukGblqAZ6NXcyURpw-6FX9FkItrfrd3tRLWRNHYgWgl4N8ZRtKmQSCWwF7z27T6GU6yo1wFf41oHXQ_OOOETzGtquPIYcvN7-"
   },
   {
     "name": "Roti Canai",
-    "description": "An amazing snack. Roti just means bread but roti canai refers to the simple dish of Indian style fried flat bread which is served with some curry sauce. It's so cheap and utterly delicious.",
+    "description": "An amazing snack. Roti just means bread but roti canai refers to the simple dish of Indian style fried flat bread which is served with some curry sauce. It's so cheap and utterly delicious. Choose where you have it wisely as I've had some really disappointing versions that really don't do it justice.",
     "price": "RM1 - RM4 (without meat)",
     "image": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Roticanai_bukittinggi.jpg"
   },
@@ -35,6 +42,103 @@
     "description": "Probably the most famous noodle dish in Malaysia, which is why it's sometimes compared to Pad Thai.",
     "price": "RM5 - RM10",
     "image": "https://upload.wikimedia.org/wikipedia/commons/0/04/Char_kway_teow.jpg"
+  },
+  {
+    "name": "Lor Bak",
+    "search": [ "loh bah", "loh bak", "lobak", "lor bak" ],
+    "description": "Basically pork sausage rolled in a thin pancake and deep fried. Makes a great cheap snack. Usually served with two dips. Apparently it's seasoned with five-spice. The lor bak stalls usually do a variety of similar products but I like the pork sausage one best.",
+    "price": "RM3 - RM6",
+    "image": "http://www.yenlin.com/wordpress/wp-pictures/aa03be063ffb_12BFC/IMG_2135.jpg"
+  },
+  {
+    "name": "Hokkien Mee",
+    "search": [ ],
+    "description": "",
+    "price": "",
+    "image": ""
+  },
+  {
+    "name": "Nasi Lemak",
+    "search": [ ],
+    "description": "",
+    "price": "",
+    "image": ""
+  },
+  {
+    "name": "Vegetarian food in Malaysia",
+    "search": [ "vegetarian" ],
+    "description": "Unfortunately, it's not particularly easy to find good food that's strictly vegetarian in Malaysia.",
+    "price": "",
+    "image": ""
+  },
+  {
+    "name": "Chapati",
+    "search": [ "capati", "chappati", "chapatti", "capatti", "cappati" ],
+    "description": "Indian flat breads. Soft and dry, perfect with a curry with sauce.",
+    "price": "",
+    "image": ""
+  },
+  {
+    "name": "Naan bread",
+    "search": [ "naan" ],
+    "description": "",
+    "price": "",
+    "image": ""
+  },
+  {
+    "name": "Tandoori",
+    "search": [ "Tandoori", "Tandoori chicken", "tandoori set" ],
+    "description": "",
+    "price": "",
+    "image": ""
+  },
+  {
+    "name": "Murtabak",
+    "search": [ "murtabek", "murtabak" ],
+    "description": "",
+    "price": "",
+    "image": ""
+  },
+  {
+    "name": "Oyster omelette",
+    "search": [ "oyster omelette", "fried oyster omelette", "fried oyster", "Oh Chien" ],
+    "description": "Known as 'Oh Chien' in Hokkien, it's a popular fried dish of fresh oysters, rice flour and egg. Served with chilli sauce.",
+    "price": "RM5 - RM15 (depending on the size)",
+    "image": ""
+  },
+  {
+    "name": "Laksa",
+    "search": [ "Penang Assam Laksa", "Assam Laksa", "Asam Laksa", "Laksa" ],
+    "description": "",
+    "price": "",
+    "image": ""
+  },
+  {
+    "name": "Rojak",
+    "search": [ "rojak", "Penang rojak" ],
+    "description": "There are different types of rojak but essentially it's a fruit salad (although not always ripe fruit) with a sauce. The sauce usually sweet, spicy and made with shrimp paste and peanuts sprinkled on top. I'm like it but I think I'd rather just have some nice ripe fruit on its own.",
+    "price": "RM3 - RM15 (depending on the size)",
+    "image": ""
+  },
+  {
+    "name": "Popiah",
+    "search": [ ],
+    "description": "",
+    "price": "",
+    "image": ""
+  },
+  {
+    "name": "",
+    "search": [ ],
+    "description": "",
+    "price": "",
+    "image": ""
+  },
+  {
+    "name": "Roti Jala",
+    "description": "A spongey webbed pancake, perfect for dipping in to curry.",
+    "price": "RM1 - RM2",
+    "image": ""
   },
   {
     "name": "Durian",

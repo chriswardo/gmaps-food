@@ -6,7 +6,7 @@ swig.setFilter('substr', function (text, start, len) {
 
 
   return text.substr(start, len);
-  
+
 });
 
 if (process.argv.length < 3) {
@@ -37,7 +37,7 @@ function linkDishTooltips(text, dish) {
   }
   var search = dish.search || new Array();
   search.push( dish.name );
-  
+
   for ( var i = 0; i < search.length; i++ ) {
     if ( search[i].length > 2 && textWithoutExcludes.indexOf( search[i].toLowerCase() ) >= 0 ) {
       var desc = '<h2>' + dish.name + '</h2><p>' + dish.description + '</p>';
@@ -45,15 +45,15 @@ function linkDishTooltips(text, dish) {
       textWithoutExcludes = textWithoutExcludes.replace( new RegExp(search[i], 'gi'), '' );
     }
   }
-  
+
   return text;
-    
+
 }
 
 swig.setFilter('tooltipDishes', function (text) {
 
   for (var i = 0; i < dishes.length; i++) {
-  
+
     text = linkDishTooltips(text, dishes[i]);
 
   }
@@ -77,40 +77,85 @@ for ( var i = 0; i < locations.length; i++ ) {
 var places = require('../maps/' + folder + '/location-category.json');
 
 
-function sortFood(a, b) {
+function sortDishes(a, b) {
+
+  var visitedCountA = 0, favouriteCountA = 0, unvisitedCountA = 0;
+  var visitedCountB = 0, favouriteCountB = 0, unvisitedCountB = 0;
+
+
+  for ( i = 0; i < a.places.length; i++ ) {
+    if (a.places[i].visited) visitedCountA++;
+    else unvisitedCountA++;
+
+    if (a.places[i].favourite) favouriteCountA++;
+  }
+  for ( j = 0; j < b.places.length; j++ ) {
+    if (b.places[j].visited) visitedCountB++;
+    else unvisitedCountB++;
+
+    if (b.places[j].favourite) favouriteCountB++;
+  }
+
+
+  if (favouriteCountA < favouriteCountB) return 1;
+  if (favouriteCountA > favouriteCountB) return -1;
+
+  if (visitedCountA < visitedCountB) return 1;
+  if (visitedCountA > visitedCountB) return -1;
+
+  if (unvisitedCountA < unvisitedCountB) return 1;
+  if (unvisitedCountA > unvisitedCountB) return -1;
+
+  return 0;
+}
+
+function sortFoodIgnoreIcon(a, b) {
+  return sortFood(a, b, true);
+}
+
+function sortFood(a, b, ignoreIcon) {
 
   if (a.visited < b.visited) return 1; // visited first
   if (a.visited > b.visited) return -1;
-  
-  //TODO: type (icon)
-  var at = 10;
-  if ( a.cuisine.toLowerCase() == "local" && ( a.icon == "restaurant" || a.icon == "local_dining" ) ) at = 1;
-  else if ( a.icon == "cake" ) at = 2;
-  else if ( a.icon == "restaurant" || a.icon == "local_dining" ) at = 3;
-  
-  var bt = 10;
-  if ( b.cuisine.toLowerCase() == "local" && ( b.icon == "restaurant" || b.icon == "local_dining" ) ) bt = 1;
-  else if ( b.icon == "cake" ) bt = 2;
-  else if ( b.icon == "restaurant" || b.icon == "local_dining" ) bt = 3;
-  
-  if (at < bt) return -1;
-  if (at > bt) return 1;
-  
-  
+
+  if (!ignoreIcon) {
+    var at = 10;
+    if ( a.cuisine.toLowerCase() == "local") at = 1;
+    else at = 3;
+
+    var bt = 10;
+    if ( b.cuisine.toLowerCase() == "local" ) bt = 1;
+    else bt = 3;
+    /*
+    var at = 10;
+    if ( a.cuisine.toLowerCase() == "local" && ( a.icon == "restaurant" || a.icon == "local_dining" ) ) at = 1;
+    else if ( a.icon == "cake" ) at = 2;
+    else if ( a.icon == "restaurant" || a.icon == "local_dining" ) at = 3;
+
+    var bt = 10;
+    if ( b.cuisine.toLowerCase() == "local" && ( b.icon == "restaurant" || b.icon == "local_dining" ) ) bt = 1;
+    else if ( b.icon == "cake" ) bt = 2;
+    else if ( b.icon == "restaurant" || b.icon == "local_dining" ) bt = 3;
+    */
+
+    if (at < bt) return -1;
+    if (at > bt) return 1;
+  }
+
   if (a.favourite < b.favourite) return 1;
   if (a.favourite > b.favourite) return -1;
-  
+
   if ((a.rating||0) < (b.rating||0)) return 1;
   if ((a.rating||0) > (b.rating||0)) return -1;
-    
+
   if ((a.images.length>0) < (b.images.length>0)) return 1;
   if ((a.images.length>0) > (b.images.length>0)) return -1;
-  
-  
+
+
   if (a.order < b.order) return -1;
   if (a.order > b.order) return 1;
-  
-  
+
+
   return 0;
 }
 
@@ -134,16 +179,20 @@ for ( var i = 0; i < dishes.length; i++ ) {
     //for ( var k = 0; k < places[location_slug].food.length; k++ ) {
   for ( var j = 0; j < allFood.length; j++ ) {
     var place = allFood[j];
-  
+
     var search = dishes[i].search || new Array();
     search.push( dishes[i].name );
-  
+
     if ( isPlaceMatch( place, search, dishes[i].search_exclude || [] ) ) dishes[i].places.push( place );
 
   }
+
+  dishes[i].places.sort(sortFoodIgnoreIcon);
   //}
   //dishes[i].places = dishes[i].places.sort(compare);
 }
+
+dishes.sort(sortDishes);
 
 function isPlaceMatch( place, search, exclude ) {
 
@@ -152,7 +201,7 @@ function isPlaceMatch( place, search, exclude ) {
       return false;
     }
   }
-  
+
 
   for ( var l = 0; l < search.length; l++ ) {
     if ( place.description.toLowerCase().indexOf( search[l].toLowerCase() ) >= 0 || place.name.toLowerCase().indexOf( search[l].toLowerCase() ) >= 0 ) {

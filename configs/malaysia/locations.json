@@ -4,7 +4,7 @@
     "name": "Kuala Lumpur",
     "short": "Kuala Lumpur",
     "slug": "kuala-lumpur",
-    "description": "The capital.",
+    "description": "The capital has a lot of amazing food to explore.",
     "image": "",
     "nav": true
   },
@@ -13,7 +13,7 @@
     "name": "Penang",
     "short": "Penang",
     "slug": "penang",
-    "description": "The food island",
+    "description": "People come to Penang for the food. It's world famous for it.",
     "image": "",
     "nav": true
   },
@@ -22,7 +22,7 @@
     "name": "Melaka / Malacca",
     "short": "Melaka",
     "slug": "melaka",
-    "description": "Nyonya food",
+    "description": "Famous for the Nyonya food.",
     "image": "",
     "nav": true
   },
