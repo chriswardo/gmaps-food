@@ -6,8 +6,28 @@
 
 html, body, main {
   height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+a { text-decoration: none; }
+ol, ul {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+h1, h2, h3 {
+  line-height: 1.1;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
 body {
+  font-family: "Helvetica Neue", Helvetica, 'Roboto', sans-serif;
 
   font-weight: 300;
   font-size: 15px !important;
@@ -61,6 +81,8 @@ body {
 
     small {
       color: #333;
+      font-size: 65%;
+      font-weight: 400;
     }
 
     nav {

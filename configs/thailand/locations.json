@@ -13,13 +13,31 @@
     "name": "Chiang Mai",
     "short": "Chiang Mai",
     "slug": "chiang-mai",
-    "description": "City in the north",
+    "description": "City in the north.",
+    "image": "",
+    "nav": true
+  },
+  {
+    "group": ["Pai", "ปาย"],
+    "name": "Pai",
+    "short": "Pai",
+    "slug": "pai",
+    "description": "Relax.",
+    "image": "",
+    "nav": true
+  },
+  {
+    "group": ["Koh Lanta", "Ko Lanta"],
+    "name": "Koh Lanta",
+    "short": "Koh Lanta",
+    "slug": "koh-lanta",
+    "description": "My favourite island.",
     "image": "",
     "nav": true
   },
   {
     "group": "Other",
-    "name": "The rest of Thailand",
+    "name": "The rest of Thailand.",
     "short": "Other",
     "slug": "other",
     "description": "Misc.",

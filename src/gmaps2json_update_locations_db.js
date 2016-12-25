@@ -116,7 +116,7 @@ function getLocationData( place ) {
       //var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lng + "," + lat + "&radius=1&types=food&key=" + cfg.API_KEY + "&sensor=true";
       var url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lng + "," + lat + "&key=" + cfg.API_KEY + "&sensor=true";
 
-      var cmd = "curl --silent '" + url + "' | jq '. | { address: .results[0].address_components[1].long_name, city: .results[0].address_components[-3].long_name, region: .results[0].address_components[-2].long_name, country: .results[0].address_components[-1].long_name, countryCode: .results[0].address_components[-1].short_name, location: [.results[0].address_components[].long_name], status: .status }'";
+      var cmd = "curl --silent '" + url + "' | jq '. | { address: .results[0].address_components[1].long_name, city: .results[0].address_components[-3].long_name, region: .results[0].address_components[-2].long_name, country: .results[0].address_components[-1].long_name, countryCode: .results[0].address_components[-1].short_name, location: [.results[0].address_components[]?.long_name], status: .status }'";
 
       exec_promise = exec(cmd);
       exec_promise.then(function (stdout) {
@@ -320,7 +320,9 @@ function getPlaceDetails( place ) {
           }
         }
         else {
-          reject( "No output from exec: " + cmd );
+          //reject( "No output from exec: " + cmd );
+          process.stderr.write( 'N' );
+          fulfill({});
         }
 
       },reject);
