@@ -1,5 +1,6 @@
 "use strict";
 var swig = require('swig');
+var fs = require('fs');
 
 
 swig.setFilter('substr', function (text, start, len) {
@@ -15,6 +16,14 @@ if (process.argv.length < 3) {
 } else {
   var folder = process.argv[2];
 }
+
+var css = false;
+if ( process.argv.length >= 4 ) {
+  const css_file = process.argv[3];
+  css = fs.readFileSync(css_file, 'utf8');
+  process.stderr.write("Including CSS file: " + css_file + " (" + css.length + ")\n");
+}
+
 process.stderr.write("Building html from " + folder + " template.\n");
 
 var dishes = require('../configs/' + folder + '/dishes.json');
@@ -218,4 +227,4 @@ function isPlaceMatch( place, search, exclude ) {
 var tpl = swig.compileFile('./templates/' + folder + '.html');
 
 
-console.log(tpl({places, locations, locations_by_slug, dishes, version: 'live'}));
+console.log(tpl({places, locations, locations_by_slug, dishes, version: 'live', css}));

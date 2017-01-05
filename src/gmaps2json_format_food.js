@@ -188,11 +188,13 @@ function processPlaces() {
     places[i].slug = removeDiacritics( places[i].name ).toLowerCase().replace(')','').replace('(','').replace(/[\s\-]+/g,'-');
     //places[i][0] = i; //for sorting
 
+    places[i].images = places[i].images.filter( (img) => img.length > 0 );
+    /*
     var images = places[i].images;
     places[i].images = [];
 
     images.forEach( function(img) {
-
+      process.stderr.write('img = ' + img);
       img = img.replace('https://','//').replace('http://','//');
       if ( img.indexOf('imgur.com') >= 0 ) {
         places[i].images.push( { thumb: img.replace('.jpg', 's.jpg', 'i'), medium: img.replace('.jpg', 'l.jpg', 'i'), large: img } );
@@ -217,7 +219,7 @@ function processPlaces() {
         places[i].images.push( { thumb: img, medium: img, large: img } );
       }
 
-    });
+    });*/
 
     places[i].name = places[i].name.replace('(not visited)','','i').trim();
 

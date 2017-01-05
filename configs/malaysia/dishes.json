@@ -10,23 +10,22 @@
       "Sometimes you pay before you eat but usually you're given a piece of paper with your order and you pay afterwards (having washed your hands at one of the sinks). Someone will come over and ask if you want a drink. I always order \"teh o ais kossong\" (iced tea with no milk or sugar)."
     ],
     "price": "RM4 - RM12",
-    "image": "https://lh4.googleusercontent.com/proxy/X9Lz7GJpto3TnkB4GeaxTLOkhWb47vpiQY6feEgpjo-hnfFHTisYu9UwMY2Z6GFgLAaAzSTwyhRUUy4U1MXCCuL2uPcShO2nW02brUlkdjO0FGy9ZChR31oSinVxnn8A0H4ZIeCGo9vn1Zi5jIvTjN6fSLnTMjYDWo9Q3vSgAFyt_fYT0wW3XYQBAyNy4T_GcxU56R3O_k0Yz2Gv3G03TJXh75Zc41C9x3StkcjQx0Z9tHEpk2W67ZDVRCMcru6TrUqy6a9YiSP-dH0uvcu2VpZRfoQVnehPRFbuOhnTDfeexjSNG7iQ5817QTeWEbnVdVKO9AnJaOXUWRs9i0HtKpXaD1RS-zB4D-3djcVHdkUBC2VW2gRfazeR7P6MBtx8i8IunZXbImMGK7WUMqM8P6nLRjsnqKTmHgFgmrMIb-KSh8bMDsuWzxqGQIK-1198k2wv2Qk6DxvkCq44KIqV53IOE3iy2s2tqSyjdNMxqfIz_1XsA1Yn43osH1-Lz_AKGZKxx6ca8W7FTgFydiXrNmmTG_QKqCAxBC_fBroyIAzznoTBBFDKeM0vVwNoiwwVT7L455TtCdPHOiA1jt9br_QM8TiBhYsCcA-_8627ipFTJ-js9ljE4SHX-BsaMKwuPxgYbRNGDngf1Y0GfOHkno_amq-dI_vjEuoT0gcqY-qalmQxfSx5XitKi-jHGu9VAvXl3GPXkvOCjWe2M5cZwQjEMMBXIN0ukGblqAZ6NXcyURpw-6FX9FkItrfrd3tRLWRNHYgWgl4N8ZRtKmQSCWwF7z27T6GU6yo1wFf41oHXQ_OOOETzGtquPIYcvN7-"
+    "image": "//lh4.googleusercontent.com/proxy/X9Lz7GJpto3TnkB4GeaxTLOkhWb47vpiQY6feEgpjo-hnfFHTisYu9UwMY2Z6GFgLAaAzSTwyhRUUy4U1MXCCuL2uPcShO2nW02brUlkdjO0FGy9ZChR31oSinVxnn8A0H4ZIeCGo9vn1Zi5jIvTjN6fSLnTMjYDWo9Q3vSgAFyt_fYT0wW3XYQBAyNy4T_GcxU56R3O_k0Yz2Gv3G03TJXh75Zc41C9x3StkcjQx0Z9tHEpk2W67ZDVRCMcru6TrUqy6a9YiSP-dH0uvcu2VpZRfoQVnehPRFbuOhnTDfeexjSNG7iQ5817QTeWEbnVdVKO9AnJaOXUWRs9i0HtKpXaD1RS-zB4D-3djcVHdkUBC2VW2gRfazeR7P6MBtx8i8IunZXbImMGK7WUMqM8P6nLRjsnqKTmHgFgmrMIb-KSh8bMDsuWzxqGQIK-1198k2wv2Qk6DxvkCq44KIqV53IOE3iy2s2tqSyjdNMxqfIz_1XsA1Yn43osH1-Lz_AKGZKxx6ca8W7FTgFydiXrNmmTG_QKqCAxBC_fBroyIAzznoTBBFDKeM0vVwNoiwwVT7L455TtCdPHOiA1jt9br_QM8TiBhYsCcA-_8627ipFTJ-js9ljE4SHX-BsaMKwuPxgYbRNGDngf1Y0GfOHkno_amq-dI_vjEuoT0gcqY-qalmQxfSx5XitKi-jHGu9VAvXl3GPXkvOCjWe2M5cZwQjEMMBXIN0ukGblqAZ6NXcyURpw-6FX9FkItrfrd3tRLWRNHYgWgl4N8ZRtKmQSCWwF7z27T6GU6yo1wFf41oHXQ_OOOETzGtquPIYcvN7-"
   },
   {
     "name": "Roti Canai",
     "description": "An amazing snack. Roti just means bread but roti canai refers to the simple dish of Indian style fried flat bread which is served with some curry sauce. It's so cheap and utterly delicious. Choose where you have it wisely as I've had some really disappointing versions that really don't do it justice.",
     "price": "RM1 - RM4 (without meat)",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Roticanai_bukittinggi.jpg"
+    "image": "//upload.wikimedia.org/wikipedia/commons/e/e2/Roticanai_bukittinggi.jpg"
   },
   {
     "name": "Cendol",
     "description": "A soup dessert made from coconut milk, shaved ice, palm sugar, red beans and green flour noodles (called cendol, which is where the dish gets its name). So refreshing on a hot day (which is every day in most of Malaysia). You can get it in a bowl, cup or bag - but I recommend having it at the stall in a bowl with a spoon for the best experience.",
     "price": "RM2 - RM4",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Cendol_Penang.JPG"
+    "image": "//upload.wikimedia.org/wikipedia/commons/a/a8/Cendol_Penang.JPG"
   },
   {
     "name": "Banana Leaf rice",
-    "search": [ "Banana leaf" ],
     "description": "Pretty similar to nasi kandar but served on a banana leaf 'plate' with various sides.",
     "how": [
       "They will put a large banana leaf in front of you, add some white rice (you can ask for more/less), then they will add some fairly bland curry sauces to the rice (it's normal to have chicken, veg & fish options to choose from). At the top of the leaf they will place some small piles of side curries, chutneys, etc (usually around 3) and you should get some poppadoms too. All of this is the base to banana leaf curry and although you might be lucky, these aren't usually spectacular. Someone should come round with the main meat/fish items which should be full of flavour.",
@@ -34,21 +33,21 @@
       "It's customary to fold the top half of the leaf (furthest from you) towards you after you've finished as a sign that you enjoyed the meal."
     ],
     "price": "RM5 - RM10",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Bananaleafrice001.jpg"
+    "image": "//upload.wikimedia.org/wikipedia/commons/3/3b/Bananaleafrice001.jpg"
   },
   {
     "name": "Char Koay Teow",
     "search": [ "Char Koay Teow", "Char kway teow", "Char Kway Tiao", "Char Kuey Teow" ],
     "description": "Probably the most famous noodle dish in Malaysia, which is why it's sometimes compared to Pad Thai.",
     "price": "RM5 - RM10",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/0/04/Char_kway_teow.jpg"
+    "image": "//upload.wikimedia.org/wikipedia/commons/0/04/Char_kway_teow.jpg"
   },
   {
     "name": "Lor Bak",
     "search": [ "loh bah", "loh bak", "lobak", "lor bak" ],
     "description": "Basically pork sausage rolled in a thin pancake and deep fried. Makes a great cheap snack. Usually served with two dips. Apparently it's seasoned with five-spice. The lor bak stalls usually do a variety of similar products but I like the pork sausage one best.",
     "price": "RM3 - RM6",
-    "image": "http://www.yenlin.com/wordpress/wp-pictures/aa03be063ffb_12BFC/IMG_2135.jpg"
+    "image": "//www.yenlin.com/wordpress/wp-pictures/aa03be063ffb_12BFC/IMG_2135.jpg"
   },
   {
     "name": "Hokkien Mee",
@@ -60,8 +59,8 @@
   {
     "name": "Nasi Lemak",
     "search": [ ],
-    "description": "",
-    "price": "",
+    "description": "Malaysia's national dish is simple but delicious. Fragrant rice cooked in coconut milk and pandan leaf, served with a variety of extras. It's regularly eaten for breakfast but you can find it at all times. It's traditionally sold in little banana leaf parcels. Probably the most traditional version somes with sambal (spicy sauce), anchovies and boiled egg.",
+    "price": "RM1 - RM6",
     "image": ""
   },
   {
@@ -128,6 +127,48 @@
     "image": ""
   },
   {
+    "name": "Roti bakar",
+    "search": [ ],
+    "description": "",
+    "price": "",
+    "image": ""
+  },
+  {
+    "name": "Wanton mee",
+    "search": [ "Wanton mee", "Wantan mee", "Wanton noodle" ],
+    "description": "",
+    "price": "",
+    "image": ""
+  },
+  {
+    "name": "Curry mee",
+    "search": [ ],
+    "description": "",
+    "price": "",
+    "image": ""
+  },
+  {
+    "name": "Ais Kachang",
+    "search": [ "Ais kachang", "Ais kacang", "ABC" ],
+    "description": "Multi-coloured ice dessert, not to be confused with cendol. I'm not a fan of it, mostly due to the sweetness and weird toppings including sweetcorn.",
+    "price": "",
+    "image": ""
+  },
+  {
+    "name": "Loh mee",
+    "search": [ ],
+    "description": "",
+    "price": "",
+    "image": ""
+  },
+  {
+    "name": "Hainanese Chicken Pie",
+    "search": [ ],
+    "description": "",
+    "price": "",
+    "image": ""
+  },
+  {
     "name": "",
     "search": [ ],
     "description": "",
@@ -144,6 +185,6 @@
     "name": "Durian",
     "description": "Not really a dish but it deserves a place here.",
     "price": "RM10 - RM20",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/D101_and_random_stock.jpg/1024px-D101_and_random_stock.jpg"
+    "image": "//upload.wikimedia.org/wikipedia/commons/thumb/f/f9/D101_and_random_stock.jpg/1024px-D101_and_random_stock.jpg"
   }
 ]
