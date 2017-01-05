@@ -13,16 +13,6 @@ $(document).ready(function() {
   d[i].setAttribute('src',d[i].getAttribute('data-src'));
   } }
 
-  $('nav a[href^=#]').click( function(event) {
-    event.stopPropagation();
-    $('.tab.is-active, nav a.is-active').removeClass('is-active');
-    $('.tab' + $(this).attr('href')).addClass('is-active');
-    $(this).addClass('is-active');
-    $('nav').addClass('hidden-xs');
-
-    $('header h2').html( $('.tab.is-active h2').html() ); //set the mobile heading
-
-  });
 
   $('#dishes a[href^=#]').click( function(event) {
     processHash( $(this).attr('href') );
@@ -66,7 +56,9 @@ $(document).ready(function() {
     }
   });
 
+  $('#nearby-search i').css('transform', 'rotate(3600deg)');
   var geoTimeout = false;
+  var gotGeo = false;
   function getLocation() {
 
     if( navigator.geolocation ) {
@@ -76,6 +68,7 @@ $(document).ready(function() {
       }, 10000);
 
       navigator.geolocation.getCurrentPosition(function(position) {
+        gotGeo = true;
         if ( geoTimeout ) clearTimeout(geoTimeout);
         setDistances(position.coords.latitude, position.coords.longitude);
       }, geoFail);
@@ -87,6 +80,7 @@ $(document).ready(function() {
 
   }
   function geoFail(error) {
+    if ( gotGeo ) return false;
     if ( geoTimeout ) clearTimeout(geoTimeout);
     $('#nearby-search').addClass('hidden');
 
@@ -115,44 +109,66 @@ $(document).ready(function() {
     return deg * (Math.PI/180)
   }
 
-  function setDistances( lat, lng ) {
+  function findNearestLocation( lat, lng ) {
+
     var closest = { distance: 100000, location: '', slug: '' };
-    $('.distance[data-lng][data-lat]').each(function() {
+
+    $('nav li[data-lng][data-lat]').each(function() {
       var distance = getDistanceFromLatLonInKm(lat,lng,$(this).attr('data-lat'),$(this).attr('data-lng'));
-      $(this).closest('section').attr('data-distance', distance);
-      $(this).find('span').text( (Math.round( distance * 10) / 10) + ' km' );
-      $(this).removeClass('hidden');
+      $(this).attr('data-distance', distance);
 
       if ( distance < closest.distance ) {
         closest.distance = distance;
-        closest.location = $(this).closest('.tab').attr('data-location');
-        closest.slug = $(this).closest('.tab').attr('id');
+        closest.location = $(this).attr('data-location');
+        closest.slug = $(this).attr('data-slug');
       }
     });
 
-    if ( closest.distance < 10 ) {
+    if ( closest.distance < 20 ) {
       $('#nearby-search').addClass('hidden');
       $('#nearby-fail').addClass('hidden');
-      $('#nearby-notice span').text(closest.location);
-      $('#nearby-notice a').attr('href','#'+closest.slug);
-      $('#nearby-notice').removeClass('hidden').click(function() { processHash( '#'+closest.slug ); });
+
+      var nearbyLink = closest.slug + '/';
+      if ( $('body').attr('data-page') != 'dishes' ) nearbyLink = '../' + nearbyLink;
+
+      if ( closest.slug == $('body').attr('data-page') ) {
+        $('#nearby-here').removeClass('hidden');
+      }
+      else {
+        $('#nearby-notice span').text(closest.location);
+        $('#nearby-notice a').attr('href',nearbyLink);
+        $('#nearby-notice').removeClass('hidden').click(function() { $('#nearby-notice a').click(); });
+      }
 
       $('nav i:not(.near)').removeClass('hidden').addClass('visible-xs');
-      $('nav a[href="#' + closest.slug + '"] i:not(.near)').removeClass('visible-xs').addClass('hidden');
+      $('nav li[data-slug="' + closest.slug + '"] i:not(.near)').removeClass('visible-xs').addClass('hidden');
       $('nav .near').addClass('hidden');
-      $('nav a[href="#' + closest.slug + '"] .near').removeClass('hidden');
+      $('nav li[data-slug="' + closest.slug + '"] .near').removeClass('hidden');
 
       $('.tab#'+closest.slug+' .nearby-sort').removeClass('hidden').find('input').change( function() {
         var sortBy = $(this).closest('.nearby-sort').find('input:checked').val();
         sortPlaces( $(this).closest('.tab').find('.sections'), sortBy );
       });
     }
+  }
+
+  function setDistances( lat, lng ) {
+    findNearestLocation( lat, lng );
+    $('.distance[data-lng][data-lat]').each(function() {
+      var distance = getDistanceFromLatLonInKm(lat,lng,$(this).attr('data-lat'),$(this).attr('data-lng'));
+      $(this).closest('section').attr('data-distance', distance);
+      $(this).find('span').text( (Math.round( distance * 10) / 10) + ' km' );
+      $(this).removeClass('hidden');
+
+    });
+
 
     $('.hidden[data-sort="distance"]').removeClass('hidden');
 
+    /*
     setTimeout(function(){
       getLocation();
-    }, 30000);
+    }, 30000);*/
 
   }
 
@@ -218,14 +234,14 @@ $(document).ready(function() {
 
     processHash(location.hash);
   }
-  else {
+  /*else {
     $('nav a[href=#dishes]').click();
 
     setTimeout(function(){
       loadLazies('#dishes');
     }, 500);
 
-  }
+  }*/
   setTimeout(function(){
     loadLazies('');
   }, 5000);

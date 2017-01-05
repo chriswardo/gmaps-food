@@ -226,5 +226,23 @@ function isPlaceMatch( place, search, exclude ) {
 // Compile a file and store it, rendering it later
 var tpl = swig.compileFile('./templates/' + folder + '.html');
 
+for ( var i = 0; i < locations.length; i++ ) {
+  if ( !(locations[i].slug in places) ) locations[i].nav = false;
+  else {
+    locations[i].lat = places[locations[i].slug].food[0].lat;
+    locations[i].lng = places[locations[i].slug].food[0].lng;
+  }
+}
 
-console.log(tpl({places, locations, locations_by_slug, dishes, version: 'live', css}));
+fs.writeFile('./out/' + folder + '/index.html', tpl({page: 'dishes', base: '//chrisward.co.uk/food/' + folder + '/', path: '', places: false, locations, locations_by_slug, dishes, version: 'live', css}), function(err) { } );
+
+for ( location_slug in places ) {
+  var dir = './out/' + folder + '/' + location_slug;
+  if (!fs.existsSync(dir)){
+    fs.mkdirSync(dir);
+  }
+  var p = {};
+  p[location_slug] = places[location_slug];
+  fs.writeFile(dir + '/index.html', tpl({page: location_slug, base: '//chrisward.co.uk/food/' + folder + '/', path: location_slug + '/', places: p, locations, locations_by_slug, dishes: false, version: 'live', css}), function(err) {} );
+}
+//console.log(tpl({places, locations, locations_by_slug, dishes, version: 'live', css}));

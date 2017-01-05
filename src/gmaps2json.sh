@@ -24,9 +24,15 @@ if [ "$2" != "" ]; then
   lessc out/$1/styles/style.less out/$1/styles/style.min.css --clean-css="--s1 --advanced --compatibility=ie8"
   gzip -9 -f --keep out/$1/styles/style.min.css
 
-  node ./src/build-from-templates.js $1 out/$1/styles/style.min.css > out/$1/index.max.html
-  html-minifier --collapse-whitespace out/$1/index.max.html -o out/$1/index.html
-  gzip -9 -f --keep out/$1/index.html
+  node ./src/build-from-templates.js $1 out/$1/styles/style.min.css
+  html-minifier --collapse-whitespace out/$1/index.html -o out/$1/index.min.html
+  gzip -9 -f --keep out/$1/index.min.html
+
+  for D in `find ./out/$1/ -depth 1 -type d \! -name "images" \! -name "img" \! -name "scripts" \! -name "styles" -exec basename {} \;`
+  do
+    html-minifier --collapse-whitespace out/$1/${D}/index.html -o out/$1/${D}/index.min.html
+    gzip -9 -f --keep out/$1/${D}/index.min.html
+  done
 
   cp templates/scripts/script.js out/$1/scripts/script.js
   minify out/$1/scripts/script.js
