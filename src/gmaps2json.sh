@@ -1,12 +1,18 @@
 if [ "$2" != "" ]; then
 
 
+  touch out/$1/images/build_start
+  mkdir -p out/$1/images/original
+  mkdir -p out/$1/images/large
+  mkdir -p out/$1/images/medium
+  mkdir -p out/$1/images/thumb
+  mkdir -p out/$1/images/new
+
   echo "Downloading map $2 for $1..."
   ./src/gmaps2json_kml_to_json.sh $2 1> ./maps/$1/basic.json
   node ./src/gmaps2json_update_locations_db.js $1
   cat ./maps/$1/combined.json | node ./src/gmaps2json_get_images.js $1 | node ./src/gmaps2json_format_food.js $1 | jq . 1> ./maps/$1/location-food.json
 
-  mkdir -p out/$1/images
   c=$(find ./out/$1/images/new/ -maxdepth 1 -iname "*.jpg" -print0 | tr -d -c "\000" | wc -c)
   if [ $c -gt 0 ]; then
     echo "Processing new images..."
@@ -23,6 +29,8 @@ if [ "$2" != "" ]; then
   cp templates/styles/style.less out/$1/styles/style.less
   lessc out/$1/styles/style.less out/$1/styles/style.min.css --clean-css="--s1 --advanced --compatibility=ie8"
   gzip -9 -f --keep out/$1/styles/style.min.css
+
+  gzip -9 -f --keep out/$1/styles/swipebox.min.css
 
   node ./src/build-from-templates.js $1 out/$1/styles/style.min.css
   html-minifier --collapse-whitespace out/$1/index.html -o out/$1/index.min.html

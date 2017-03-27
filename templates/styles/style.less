@@ -50,6 +50,7 @@ body {
     background-color: rgb(244,67,54);
     width: 100%;
 
+
     .flex();
     .flex-justify(space-between);
     color: white;
@@ -57,6 +58,11 @@ body {
     top: 0px;
     z-index: 10;
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.2);
+
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none;          /* Likely future */
 
 
     h2 {
@@ -253,6 +259,9 @@ body {
         margin: 0 auto;
         padding: 20px;
         margin-bottom: 20px;
+        text-align: center;
+      }
+      #nearby-notice {
         cursor: pointer;
       }
 
@@ -511,6 +520,7 @@ body {
           .flex();
           .flex-justify(center);
           .flex-align-items(center);
+          .flex-wrap(wrap);
           padding-top: 10px;
           font-weight: 300;
 

@@ -1,6 +1,5 @@
 
 $(document).ready(function() {
-
   var linkDefer = document.getElementsByTagName('link');
   for (var i=0; i<linkDefer.length; i++) {
   if(linkDefer[i].getAttribute('data-href')) {
@@ -13,10 +12,12 @@ $(document).ready(function() {
   d[i].setAttribute('src',d[i].getAttribute('data-src'));
   } }
 
+  $('header').click( function(e) { $('html, body').animate({ scrollTop: 0}); });
 
-  $('#dishes a[href^=#]').click( function(event) {
+
+  /*$('#dishes a[href^=#]').click( function(event) {
     processHash( $(this).attr('href') );
-  });
+  });*/
 
   $('.filter-row > div').click( function(event) {
     $(this).parent().children().removeClass('filter-active');
@@ -124,9 +125,9 @@ $(document).ready(function() {
       }
     });
 
+    $('#nearby-search').addClass('hidden');
+    $('#nearby-fail').addClass('hidden');
     if ( closest.distance < 20 ) {
-      $('#nearby-search').addClass('hidden');
-      $('#nearby-fail').addClass('hidden');
 
       var nearbyLink = closest.slug + '/';
       if ( $('body').attr('data-page') != 'dishes' ) nearbyLink = '../' + nearbyLink;
@@ -137,7 +138,7 @@ $(document).ready(function() {
       else {
         $('#nearby-notice span').text(closest.location);
         $('#nearby-notice a').attr('href',nearbyLink);
-        $('#nearby-notice').removeClass('hidden').click(function() { $('#nearby-notice a').click(); });
+        $('#nearby-notice').removeClass('hidden').click(function() { window.location.href = nearbyLink; });
       }
 
       $('nav i:not(.near)').removeClass('hidden').addClass('visible-xs');
@@ -149,6 +150,10 @@ $(document).ready(function() {
         var sortBy = $(this).closest('.nearby-sort').find('input:checked').val();
         sortPlaces( $(this).closest('.tab').find('.sections'), sortBy );
       });
+    }
+    else {
+
+
     }
   }
 
@@ -185,7 +190,7 @@ $(document).ready(function() {
       });
     }
   }
-
+/*
   function processHash( hash ) {
     location.hash = hash;
     var tab = hash;
@@ -206,9 +211,10 @@ $(document).ready(function() {
 
     loadLazies(tab);
 
-  }
+  }*/
 
-  $('#menu-btn').click( function() {
+  $('#menu-btn').click( function(e) {
+    e.stopPropagation();
     $('nav').toggleClass('hidden-xs');
   });
 
@@ -230,10 +236,10 @@ $(document).ready(function() {
     }, 1000);
   }
 
-  if (location.hash.length > 1 ) {
+  /*if (location.hash.length > 1 ) {
 
     processHash(location.hash);
-  }
+  }*/
   /*else {
     $('nav a[href=#dishes]').click();
 
@@ -251,6 +257,16 @@ $(document).ready(function() {
 
   $('.poster').click( function() {
     $(this).closest('section').find('.gallery-thumbs a').first().click();
+  });
+
+
+  setTimeout(function(){
+    $('i').css('visibility','visible');
+  }, 2500);
+  document.fonts.ready.then(function () {
+    setTimeout(function(){
+      $('i').css('visibility','visible');
+    }, 500);
   });
 
 });

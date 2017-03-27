@@ -6,7 +6,7 @@ if [ "$1" != "" ]; then
 
   aws s3 cp out/$1/scripts/script.min.js.gz s3://chrisward.co.uk/food/$1/scripts/script.min.js --region eu-west-1 --metadata-directive REPLACE --content-type "application/x-javascript" --content-encoding "gzip" --cache-control "max-age=2419200"
 
-  #aws s3 cp out/$1/styles/swipebox.min.css.gz s3://chrisward.co.uk/food/$1/styles/swipebox.min.css --region eu-west-1 --metadata-directive REPLACE --content-type "text/css" --content-encoding "gzip" --cache-control "max-age=2419200"
+  aws s3 cp out/$1/styles/swipebox.min.css.gz s3://chrisward.co.uk/food/$1/styles/swipebox.min.css --region eu-west-1 --metadata-directive REPLACE --content-type "text/css" --content-encoding "gzip" --cache-control "max-age=2419200"
 
   aws s3 cp out/$1/og.jpg s3://chrisward.co.uk/food/$1/og.jpg --region eu-west-1 --metadata-directive REPLACE --content-type "image/jpeg" --cache-control "max-age=31536000"
 
@@ -18,19 +18,20 @@ if [ "$1" != "" ]; then
 
   if [ "$2" != "" ]; then
     echo "Uploading Images..."
-    for file in out/$1/images/thumb/*.jpg ; do
+    for file in `find ./out/$1/images/thumb -type f -name "*.jpg" -depth 1 -newer ./out/$1/images/build_start`; do
       aws s3 cp ${file} s3://chrisward.co.uk/food/$1/images/thumb/`basename ${file}` --region eu-west-1 --metadata-directive REPLACE --content-type "image/jpeg" --cache-control "max-age=31536000"
     done
-    for file in out/$1/images/medium/*.jpg ; do
+    for file in `find ./out/$1/images/medium -type f -name "*.jpg" -depth 1 -newer ./out/$1/images/build_start`; do
       aws s3 cp ${file} s3://chrisward.co.uk/food/$1/images/medium/`basename ${file}` --region eu-west-1 --metadata-directive REPLACE --content-type "image/jpeg" --cache-control "max-age=31536000"
     done
-    for file in out/$1/images/large/*.jpg ; do
+    for file in `find ./out/$1/images/large -type f -name "*.jpg" -depth 1 -newer ./out/$1/images/build_start`; do
       aws s3 cp ${file} s3://chrisward.co.uk/food/$1/images/large/`basename ${file}` --region eu-west-1 --metadata-directive REPLACE --content-type "image/jpeg" --cache-control "max-age=31536000"
     done
+    touch out/$1/images/build_start
   fi
 
   aws cloudfront create-invalidation --distribution-id E2JH6T6MPLSO2D --paths /food/$1/ /food/$1/* | jq '(. | keys[0]) + " " + (.[ . | keys[0] ].Status?)'
-  #aws cloudfront create-invalidation --distribution-id E2JH6T6MPLSO2D --paths /travel/$1/food/ | jq '(. | keys[0]) + " " + (.[ . | keys[0] ].Status?)'
+  aws cloudfront create-invalidation --distribution-id E2JH6T6MPLSO2D --paths /travel/$1/food/ | jq '(. | keys[0]) + " " + (.[ . | keys[0] ].Status?)'
 
 else
     echo "Usage: " $0 " [FOLDER]"

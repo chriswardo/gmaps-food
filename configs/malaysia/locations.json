@@ -4,7 +4,7 @@
     "name": "Kuala Lumpur",
     "short": "Kuala Lumpur",
     "slug": "kuala-lumpur",
-    "description": "The capital has a lot of amazing food to explore.",
+    "description": "Kuala Lumpur (KL) is the capital and has a lot of amazing food to explore and you can get most types of cuisine. Popular areas are Jalan Alor (at night only), Chinatown and Little India (Brickfields).",
     "image": "",
     "nav": true
   },
@@ -13,7 +13,7 @@
     "name": "Penang",
     "short": "Penang",
     "slug": "penang",
-    "description": "People come to Penang for the food. It's world famous for it.",
+    "description": "People come to Penang for the food. It's world famous for it. It's predominantly a mixture of Hokkien, Teochew and Indian-influenced food.",
     "image": "",
     "nav": true
   },
@@ -22,7 +22,16 @@
     "name": "Melaka / Malacca",
     "short": "Melaka",
     "slug": "melaka",
-    "description": "Famous for the Nyonya food.",
+    "description": "Melaka is famous for Nyonya food.",
+    "image": "",
+    "nav": true
+  },
+  {
+    "group": "Ipoh",
+    "name": "Ipoh",
+    "short": "Ipoh",
+    "slug": "ipoh",
+    "description": "Ipoh is a city near Cameron Highlands, known for its Hakka and Cantonese-influenced Chinese food. \"Nga Choy Kai\" (bean sprout chicken) and Ipoh White Coffee are probably the two most famous items, but there's also \"Hakka Mee\", \"Chee Cheong Fun\" and \"Hor Mee\" are also big here. There is some Indian food but not much compared with Penang. It seems most of the best food is in the mornings and afternoon, with a lot of the best options closing before dinner.",
     "image": "",
     "nav": true
   },

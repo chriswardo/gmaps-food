@@ -171,12 +171,13 @@ function sortFood(a, b, ignoreIcon) {
 var allFood = new Array();
 for ( var location_slug in places ) {
   //var sortedFood = new Array();
-  places[location_slug].food.sort(sortFood);
-  for ( var i = 0; i < places[location_slug].food.length; i++ ) {
-    allFood.push(places[location_slug].food[i]);
+  if ( places[location_slug].food ) {
+    places[location_slug].food.sort(sortFood);
+    for ( var i = 0; i < places[location_slug].food.length; i++ ) {
+      allFood.push(places[location_slug].food[i]);
+    }
   }
 }
-
 allFood.sort(sortFood);
 
 
